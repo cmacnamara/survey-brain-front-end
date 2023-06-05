@@ -33,7 +33,10 @@ const Surveys = (props: SurveysProps) => {
           <h3>No surveys created yet</h3>
           :
           surveys.map((survey: Survey) => (
-            <p key={survey.id}>{survey.title}</p>
+            <SurveyCard 
+              key={survey.id}
+              survey={survey} 
+            />
           ))
         }
       </div>
