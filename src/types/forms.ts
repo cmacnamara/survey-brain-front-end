@@ -1,6 +1,10 @@
 /* ---------==== custom forms ====--------- */
 
-
+export interface NewSurveyFormData {
+  title: string;
+  description: string;
+  questions: string[][];
+}
 
 /* ---------===== auth forms =====--------- */
 
