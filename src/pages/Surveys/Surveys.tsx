@@ -9,7 +9,7 @@ const Surveys = () => {
     <main className={styles.surveysContainer}>
       <div>
         <h1>Create a survey</h1>
-        <NavLink to="surveys/create">
+        <NavLink to="/surveys/create">
           <div className={styles.newSurveyBtn}>
             +
           </div>

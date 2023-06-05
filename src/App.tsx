@@ -9,6 +9,7 @@ import Landing from './pages/Landing/Landing'
 import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Surveys from './pages/Surveys/Surveys'
+import CreateSurvey from './pages/CreateSurvey/CreateSurvey'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -55,6 +56,14 @@ function App(): JSX.Element {
           element={
             <ProtectedRoute user={user}>
               <Surveys />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/surveys/create"
+          element={
+            <ProtectedRoute user={user}>
+              <CreateSurvey />
             </ProtectedRoute>
           }
         />
