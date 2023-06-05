@@ -1,3 +1,6 @@
+// components
+import SurveyCard from '../../components/SurveyCard/SurveyCard';
+
 // css
 import styles from './Surveys.module.css'
 

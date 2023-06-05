@@ -1,3 +1,8 @@
+// components
+import QuestionCard from '../../components/QuestionCard/QuestionCard';
+import AnalysisCard from '../../components/AnalysisCard/AnalysisCard';
+import TallyCard from '../../components/TallyCard/TallyCard';
+
 // css
 import styles from './CreateSurvey.module.css'
 
