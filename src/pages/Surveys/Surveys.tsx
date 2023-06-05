@@ -7,7 +7,16 @@ import styles from './Surveys.module.css'
 // npm modules
 import { NavLink } from 'react-router-dom'
 
-const Surveys = () => {
+// types
+import { Survey } from '../../types/models'
+
+interface SurveysProps {
+  surveys: Survey[];
+}
+
+const Surveys = (props: SurveysProps) => {
+  const { surveys } = props
+
   return (
     <main className={styles.surveysContainer}>
       <div>
@@ -20,6 +29,13 @@ const Surveys = () => {
       </div>
       <div>
         <h1>My surveys</h1>
+        {!surveys.length ?
+          <h3>No surveys created yet</h3>
+          :
+          surveys.map((survey: Survey) => (
+            <p key={survey.id}>{survey.title}</p>
+          ))
+        }
       </div>
     </main>
   );

@@ -23,11 +23,24 @@ import * as surveyService from './services/surveyService'
 import './App.css'
 
 // types
-import { User } from './types/models'
+import { User, Survey } from './types/models'
 
 function App(): JSX.Element {
   const [user, setUser] = useState<User | null>(authService.getUser())
+  const [surveys, setSurveys] = useState<Survey[]>([])
   const navigate = useNavigate()
+
+  useEffect((): void => {
+    const fetchSurveys = async (): Promise<void> => {
+      try {
+        const surveyData: Survey[] = await surveyService.getAllSurveys()
+        setSurveys(surveyData)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    user ? fetchSurveys() : setSurveys([])
+  }, [user])
   
   const handleLogout = (): void => {
     authService.logout()
@@ -56,7 +69,9 @@ function App(): JSX.Element {
           path="/surveys"
           element={
             <ProtectedRoute user={user}>
-              <Surveys />
+              <Surveys 
+                surveys={surveys}
+              />
             </ProtectedRoute>
           }
         />
