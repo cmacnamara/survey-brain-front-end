@@ -14,12 +14,13 @@ const NavBar = (props: NavBarProps): JSX.Element => {
   
   return (
     <nav>
+      <NavLink to="/">
+        <h1>SurveyBrain</h1>
+      </NavLink>
       {user ?
         <ul>
-          <li>Welcome, {user.name}</li>
-          <li><NavLink to="/profiles">Profiles</NavLink></li>
+          <li><NavLink to="/surveys">Home</NavLink></li>
           <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
-          <li><NavLink to="/auth/change-password">Change Password</NavLink></li>
         </ul>
       :
         <ul>
