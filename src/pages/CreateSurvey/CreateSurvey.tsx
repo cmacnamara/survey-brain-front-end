@@ -152,7 +152,7 @@ const CreateSurvey = () => {
           >
             Submit
           </button>
-          <Link to="/">
+          <Link to="/surveys">
             <button>Cancel</button>
           </Link>
         </div>
