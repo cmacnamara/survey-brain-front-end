@@ -33,10 +33,6 @@ async function createQuestion(question: Question, surveyId: number): Promise<Que
 }
 
 async function show(surveyId: string | undefined): Promise<Survey> {
-  console.log('GETTING SURVEY AT', surveyId);
-  console.log(`BASE_URL/${surveyId}`);
-  
-  
   const res = await fetch(`${BASE_URL}/${surveyId}`, {
     headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
   })

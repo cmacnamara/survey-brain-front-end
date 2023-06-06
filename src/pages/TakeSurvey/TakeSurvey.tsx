@@ -28,11 +28,22 @@ const TakeSurvey = () => {
 
   if(!survey) return <h1>Loading...</h1>
 
+  console.log("SURVEY IS", survey);
+  
+
   return (  
     <main className={styles.takeSurveyContainer}>
       <h1>{survey.title}</h1>
       <p>{survey.description}</p>
-      
+      <form action="">
+        {survey.surveyQuestions ?
+          survey.surveyQuestions.map((question, idx) => (
+            <h3 key={idx}>{question.prompt}</h3>
+          )) 
+          :
+          <h1>No questions</h1> 
+        }
+      </form>
     </main>
   );
 }
