@@ -26,9 +26,13 @@ const TakeSurvey = () => {
     fetchSurvey()
   }, [surveyId])
 
+  if(!survey) return <h1>Loading...</h1>
+
   return (  
     <main className={styles.takeSurveyContainer}>
-
+      <h1>{survey.title}</h1>
+      <p>{survey.description}</p>
+      
     </main>
   );
 }

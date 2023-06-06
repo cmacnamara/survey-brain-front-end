@@ -17,8 +17,8 @@ const SurveyCard = (props: SurveyCardProps): JSX.Element => {
   return (  
     <article className={styles.surveyCard}>
       <h3>{survey.title}</h3>
-      <Link to={`${survey.id}`}>
-        Edit survey
+      <Link to={`/surveys/${survey.id}`}>
+        Take survey
       </Link>
     </article>
   );
