@@ -1,3 +1,17 @@
 .createSurveyContainer {
   margin-top: 100px;
 }
+
+.addQuestionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid white 1px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.addQuestionBtn:hover {
+  cursor: pointer;
+}

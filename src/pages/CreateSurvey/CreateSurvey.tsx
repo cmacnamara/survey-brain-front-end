@@ -8,7 +8,7 @@ import styles from './CreateSurvey.module.css'
 
 // npm modules
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 // services
 import * as surveyService from '../../services/surveyService'
@@ -27,7 +27,7 @@ const CreateSurvey = () => {
     questions: [{
       id: 0,
       prompt: '',
-      type: 'Multiple Choice',
+      type: 'Free Response',
       surveyId: 0,
       answerChoices: [],
       required: false,
@@ -89,12 +89,14 @@ const CreateSurvey = () => {
   const handleAddQuestion = (): void => {
     const newQuestion = {
       prompt: '',
-      type: 'Multiple Choice',
+      type: 'Free Response',
       answerChoices: [],
       required: false,
       edited: false
     }
+    
     setFormData((formData) => {
+      console.log("SETTING FORM DATA");
       const newData = {...formData}
       newData.questions.push(newQuestion)
       return newData
@@ -114,7 +116,7 @@ const CreateSurvey = () => {
           <input 
             type="text" 
             value={title} 
-            name="surveyName"
+            name="title"
             placeholder='Name of your survey' 
             onChange={handleChange} 
           />
@@ -123,7 +125,7 @@ const CreateSurvey = () => {
             Write a description of your survey
             <textarea 
               value={description} 
-              name="surveyDescription" 
+              name="description" 
               onChange={handleChange}>
                 Description of your survey
             </textarea>
@@ -137,12 +139,23 @@ const CreateSurvey = () => {
           />
         ))}
 
-        <button 
+        <div 
           className={styles.addQuestionBtn}
-          onClick={handleAddQuestion}
-          >
+          onClick={handleAddQuestion}>
             +
-        </button>
+        </div>
+
+        <div className={styles.inputContainer}>
+          <button
+            className={styles.button}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+          <Link to="/">
+            <button>Cancel</button>
+          </Link>
+        </div>
 
       </form>
     </main>
