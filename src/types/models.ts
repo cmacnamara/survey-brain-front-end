@@ -5,7 +5,7 @@ export interface Survey {
   title: string;
   description: string;
   profileId: number;
-  surveyQuestions?: string[] | undefined;
+  surveyQuestions?: Question[] | undefined;
   createdAt: string;
   updatedAt: string;
 }

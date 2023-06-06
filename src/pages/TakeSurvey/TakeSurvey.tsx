@@ -12,7 +12,7 @@ import { useState, useEffect } from "react"
 import * as surveyService from '../../services/surveyService'
 
 // types
-import { Survey } from '../../types/models'
+import { Survey, Question } from '../../types/models'
 
 const TakeSurvey = () => {
   const {surveyId} = useParams()
