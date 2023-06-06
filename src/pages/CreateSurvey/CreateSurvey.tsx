@@ -145,9 +145,9 @@ const CreateSurvey = () => {
         {questions.map((question,idx) => (
           <QuestionCard 
             key={idx}
+            index={idx}
             question={question}
             formData={formData}
-            handleQuestionPromptChange={handleQuestionPromptChange}
             setFormData={setFormData}
           />
         ))}
