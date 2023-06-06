@@ -10,14 +10,14 @@ export interface Survey {
 }
 
 export interface Question {
-  id: number;
+  id?: number;
   prompt: string;
   type: string;
-  surveyId: number;
+  surveyId?: number;
   answerChoices: string[];
   required: boolean;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
   edited: boolean;
 }
 

@@ -1,9 +1,17 @@
+// types
+import { Question } from '../types/models'
+
 /* ---------==== custom forms ====--------- */
 
 export interface NewSurveyFormData {
   title: string;
   description: string;
-  questions: string[][];
+  questions: Question[];
+}
+
+export interface SurveyMetaInfo {
+  title: string;
+  description: string;
 }
 
 /* ---------===== auth forms =====--------- */
