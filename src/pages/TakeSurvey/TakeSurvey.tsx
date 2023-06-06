@@ -13,7 +13,7 @@ import { useState, useEffect } from "react"
 import * as surveyService from '../../services/surveyService'
 
 // types
-import { Survey, Question, Response } from '../../types/models'
+import { Survey, Question, ResponseToQuestion } from '../../types/models'
 import { handleErrMsg } from '../../types/validators'
 
 const TakeSurvey = () => {
@@ -22,7 +22,7 @@ const TakeSurvey = () => {
   const [survey, setSurvey] = useState<Survey | null>(null)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [message, setMessage] = useState('')
-  const [responses, setResponses] = useState<Response[]>([])
+  const [responses, setResponses] = useState([''])
 
   useEffect(() => {
     const fetchSurvey = async () => {
@@ -31,10 +31,20 @@ const TakeSurvey = () => {
     }
     fetchSurvey()
   }, [surveyId])
-
+  
   if(!survey) return <h1>Loading...</h1>
-
+  
+  // if(survey?.surveyQuestions?.length) {
+  //   const tempResponses: string[] = []
+  //   survey.surveyQuestions.forEach(question => {
+  //     tempResponses.push('')
+  //   })
+  //   setResponses(tempResponses)
+  // }
+  
   console.log("SURVEY IS", survey);
+  console.log("RESPONSES ARE", responses);
+  
   
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
@@ -42,8 +52,8 @@ const TakeSurvey = () => {
       if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
+      responses.forEach(response => saveResponse(response, survey.id, response.questionId))
       setIsSubmitted(true)
-      await surveyService.submitResponses(formData)
       navigate('/')
     } catch (err) {
       console.log(err)
@@ -52,17 +62,40 @@ const TakeSurvey = () => {
     }
   }
 
+  const saveResponse = async (response: ResponseToQuestion, surveyId: number, questionId: number): Promise<void> => {
+    try {
+      if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
+        throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
+      }
+      const newResponse = await surveyService.submitResponse(surveyId, questionId, response)
+    } catch (err) {
+      console.log(err)
+      handleErrMsg(err, setMessage)
+      setIsSubmitted(false)
+    }
+  }
+
+  const handleResponseChange = (evt: React.ChangeEvent<HTMLTextAreaElement>, idx:number) => {
+    setMessage('')
+    const tempResponses = [...responses]
+    tempResponses[idx].content = evt.target.value
+    setResponses(tempResponses)
+    setSurvey({ ...survey, surveyQuestions: [...survey.surveyQuestions, ]})
+  }
+
   return (  
     <main className={styles.takeSurveyContainer}>
       <h1>{survey.title}</h1>
       <p>{survey.description}</p>
       <p>{message}</p>
-      <form action="">
+      <form>
         {survey.surveyQuestions ?
           survey.surveyQuestions.map((question, idx) => (
             <QuestionResponseCard 
               key={idx} 
               question={question}
+              responses={responses}
+              handleResponseChange={handleResponseChange}
             />
           )) 
           :

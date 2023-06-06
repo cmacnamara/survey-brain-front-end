@@ -2,7 +2,7 @@
 import * as tokenService from './tokenService'
 
 // types
-import { Survey, Question } from '../types/models'
+import { Survey, Question, ResponseToQuestion } from '../types/models'
 import { SurveyMetaInfo } from '../types/forms'
 
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/surveys`
@@ -39,5 +39,9 @@ async function show(surveyId: string | undefined): Promise<Survey> {
   return await res.json() as Survey
 }
 
+async function submitResponse(surveyId: number, questionId: number, response: ResponseToQuestion): Promise<Response> {
 
-export { getAllSurveys, createSurvey, createQuestion, show }
+}
+
+
+export { getAllSurveys, createSurvey, createQuestion, show, submitResponse }

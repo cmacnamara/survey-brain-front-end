@@ -25,14 +25,10 @@ const CreateSurvey = () => {
     title: '',
     description: '',
     questions: [{
-      id: 0,
       prompt: '',
       type: 'Free Response',
-      surveyId: 0,
       answerChoices: [],
       required: false,
-      createdAt: '',
-      updatedAt: '',
       edited: false
     }]
   })
@@ -111,6 +107,8 @@ const CreateSurvey = () => {
       console.log("SETTING FORM DATA");
       const newData = {...formData}
       newData.questions.push(newQuestion)
+      console.log("NEW DATA", newData);
+      
       return newData
     })
   }
@@ -150,12 +148,13 @@ const CreateSurvey = () => {
             question={question}
             formData={formData}
             handleQuestionPromptChange={handleQuestionPromptChange}
+            setFormData={setFormData}
           />
         ))}
 
         <div 
           className={styles.addQuestionBtn}
-          onClick={handleAddQuestion}>
+          onClick={() => handleAddQuestion()}>
             +
         </div>
 

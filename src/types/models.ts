@@ -22,7 +22,7 @@ export interface Question {
   edited: boolean;
 }
 
-export interface Response {
+export interface ResponseToQuestion {
   id?: number;
   profileId: number;
   questionId: number;

@@ -12,10 +12,19 @@ interface QuestionCardProps {
   key:number,
   question: Question,
   formData: NewSurveyFormData,
-  handleQuestionPromptChange: (index:number, value:string) => void
+  setFormData: (value: NewSurveyFormData | ((prevVar: NewSurveyFormData) => NewSurveyFormData)) => void
 }
 
+
+
 const QuestionCard = (props: QuestionCardProps) => {
+  const [prompt, setPrompt] = useState('')
+
+  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setPrompt(evt.target.value)
+    //After updating state, use setFormData
+  }
+
   if(props.question.type === "Free Response") {
     return (  
       <section className={styles.questionCard}>
@@ -30,9 +39,9 @@ const QuestionCard = (props: QuestionCardProps) => {
           Write a prompt:
           <input 
             type="text" 
-            value={props.question.prompt}
+            value={prompt}
             name='questions'
-            onChange={props.handleQuestionPromptChange(props.key,)}
+            onChange={handleChange}
           />
         </label>
       </section>
