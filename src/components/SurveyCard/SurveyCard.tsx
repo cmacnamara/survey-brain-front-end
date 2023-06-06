@@ -15,11 +15,12 @@ const SurveyCard = (props: SurveyCardProps): JSX.Element => {
   const { survey } = props
 
   return (  
-    <Link to={`/surveys/`}>
-      <article className={styles.surveyCard}>
-        <h3>{survey.title}</h3>
-      </article>
-    </Link>
+    <article className={styles.surveyCard}>
+      <h3>{survey.title}</h3>
+      <Link to={`${survey.id}`}>
+        Edit survey
+      </Link>
+    </article>
   );
 }
 

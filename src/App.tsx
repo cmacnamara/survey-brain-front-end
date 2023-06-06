@@ -10,6 +10,7 @@ import Profiles from './pages/Profiles/Profiles'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Surveys from './pages/Surveys/Surveys'
 import CreateSurvey from './pages/CreateSurvey/CreateSurvey'
+import TakeSurvey from './pages/TakeSurvey/TakeSurvey'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -80,6 +81,14 @@ function App(): JSX.Element {
           element={
             <ProtectedRoute user={user}>
               <CreateSurvey />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/surveys/:surveyId"
+          element={
+            <ProtectedRoute user={user}>
+              <TakeSurvey />
             </ProtectedRoute>
           }
         />

@@ -32,5 +32,12 @@ async function createQuestion(question: Question, surveyId: number): Promise<Que
   return await res.json() as Question
 }
 
+async function show(surveyId: string | undefined): Promise<Survey> {
+  const res = await fetch(`BASE_URL/${surveyId}`, {
+    headers: { 'Authorization': `Bearer ${tokenService.getToken()}` },
+  })
+  return await res.json() as Survey
+}
 
-export { getAllSurveys, createSurvey, createQuestion }
+
+export { getAllSurveys, createSurvey, createQuestion, show }

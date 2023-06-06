@@ -40,8 +40,20 @@ const CreateSurvey = () => {
   const [message, setMessage] = useState('')
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>) => {
+    console.log("TARGET NAME", evt.target.name);
+    
     setMessage('')
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
+  }
+
+  const handleQuestionPromptChange = (index:number, value:string): void => {
+    const newQuestions: Question[] = formData.questions.map((question,idx) => {
+      if(idx === index) {
+        question.prompt = value
+      }
+      return question
+    })
+    setFormData({ ...formData, questions:newQuestions})
   }
 
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
@@ -136,6 +148,8 @@ const CreateSurvey = () => {
           <QuestionCard 
             key={idx}
             question={question}
+            formData={formData}
+            handleQuestionPromptChange={handleQuestionPromptChange}
           />
         ))}
 
