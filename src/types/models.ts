@@ -23,12 +23,12 @@ export interface Question {
 }
 
 export interface Response {
-  id: number;
+  id?: number;
   profileId: number;
   questionId: number;
   content: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 /* ---------===== auth models =====--------- */
