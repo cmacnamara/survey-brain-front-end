@@ -31,12 +31,6 @@ const SurveyResults = () => {
     fetchSurvey()
     
   }, [surveyId])  
-
-  const getAnalysis = async () => {
-    const analysis = await analysisService.getSentimentAnalysis("The service was terrible! I hated the pizza and the drinks were watered down. I hope the owner takes heed of this review!")
-    console.log("ANALYSIS", analysis);
-    
-  }
   
   if(!survey) return <h1>Loading Results...</h1>
   console.log("Survey object", survey);
@@ -56,7 +50,6 @@ const SurveyResults = () => {
       :
       ''
       }
-      <button onClick={getAnalysis}>Get Analysis</button>
     </main>
   );
 }

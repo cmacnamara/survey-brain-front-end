@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import * as analysisService from '../../services/analysisService'
 
 // types
-import { Question, SentimentAnalysis } from '../../types/models'
+import { Question, ResponseToQuestion, SentimentAnalysis } from '../../types/models'
 
 interface QuestionCardProps {
   key:number,
@@ -16,11 +16,26 @@ interface QuestionCardProps {
   question: Question,
 }
 
+type tally = {[key: string] : number}
+
 const QuestionResultCard = (props: QuestionCardProps) => {
   const { question } = props
   const [overallAnalysis, setOverallAnalysis] = useState<SentimentAnalysis>()
 
   let allResponses = ''
+  const answerTally: tally = {}
+
+  if(question.type === 'Multiple Choice') {
+    question.responses?.forEach((response) => {
+      if(answerTally[response.content]) {
+        answerTally[response.content] += 1
+      } else {
+        answerTally[response.content] = 1
+      }
+    })
+  }
+
+  
 
   question.responses?.forEach(response => {
     allResponses += " " + response.content
@@ -28,8 +43,10 @@ const QuestionResultCard = (props: QuestionCardProps) => {
 
   useEffect((): void => {
     const fetchAnalysis = async (): Promise<void> => {
-        if(overallAnalysis?.score) return
+        if(overallAnalysis?.author) return
         const analysis = await analysisService.getSentimentAnalysis(allResponses)
+        console.log("CALLING API");
+        
         setOverallAnalysis(analysis)
     }
     fetchAnalysis()
@@ -38,7 +55,7 @@ const QuestionResultCard = (props: QuestionCardProps) => {
   console.log("OVERALL ANALYSIS", overallAnalysis);
   
   return (
-    <section className={styles.questionCard}>
+    <section className={styles.questionResultCard}>
       <h2>{question.prompt}</h2>
       <ul>
         {question.answerChoices ?
@@ -49,22 +66,48 @@ const QuestionResultCard = (props: QuestionCardProps) => {
         ''
         }
       </ul>
-      <div>
-        <h3>Analysis</h3>
-        <p>Overall, participants felt mostly {overallAnalysis?.type} in their responses</p>
-      </div>
-      <h3>Responses</h3>
-      <ul>
-        {question.responses ?
-          question.responses.map((response, idx:number) => (
-            <li key={idx}>
-                {response.content}
-            </li>
-          ))
-        :
-        ''
-        }
-      </ul>
+      {question.responses?.length ?
+        <>
+          <div>
+            <h3>Analysis</h3>
+            <p>Overall, participants felt mostly {overallAnalysis?.type} in their responses</p>
+            {question.type === 'Multiple Choice' ?
+              <>
+                <h3>Tally of Responses</h3>
+                <div>
+                  {Object.keys(answerTally).map((answer,idx) => (
+                    <p key={idx}>{answer}: {answerTally[answer]}</p>
+                  ))}
+                </div>
+              </>
+            :
+            ''
+            } 
+          </div>
+          
+          {question.type === "Free Response" ?
+          <>
+            <h3>Responses</h3>
+          <ul>
+            {question.responses ?
+              question.responses.map((response, idx:number) => (
+                <li key={idx}>
+                    {response.content}
+                </li>
+              ))
+            :
+            ''
+            }
+          </ul>
+          </>
+          :
+          ''
+          }
+          
+        </>
+      :
+      <p>No responses yet</p>
+      }
     </section>
   )
 }
