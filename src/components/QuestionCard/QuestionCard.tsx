@@ -28,13 +28,26 @@ const QuestionCard = (props: QuestionCardProps) => {
     tempFormData.questions[props.index].prompt = prompt 
     props.setFormData({...tempFormData})
   }
+  
+  const handleTypeChange = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+    setQuestionType(evt.target.value)
+  
+    //After updating state, use setFormData
+    const tempFormData = props.formData
+    tempFormData.questions[props.index].type = questionType 
+    props.setFormData({...tempFormData})
+  }
 
   if(questionType === "Free Response") {
     return (  
       <section className={styles.questionCard}>
         <label className={styles.inputContainer}>
           Choose a type of question
-          <select name="type" defaultValue="Free Response">
+          <select 
+            name="type" 
+            value={questionType}
+            onChange={handleTypeChange}
+          >
             <option value="Free Response">Free Response</option>
             <option value="Multiple Choice">Multiple Choice</option>
           </select>
@@ -56,9 +69,13 @@ const QuestionCard = (props: QuestionCardProps) => {
         <p>{props.question.prompt}</p>
         <label className={styles.inputContainer}>
           Choose a type of question
-          <select name="type" defaultValue="Multiple Choice">
+          <select 
+            name="type" 
+            value={questionType}
+            onChange={handleTypeChange}
+          >
             <option value="Free Response">Free Response</option>
-            <option value="Multiple Choice" selected>Multiple Choice</option>
+            <option value="Multiple Choice">Multiple Choice</option>
           </select>
         </label>
       </section>
