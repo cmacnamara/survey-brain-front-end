@@ -8,11 +8,12 @@ import { Link } from "react-router-dom"
 import { Survey } from '../../types/models';
 
 interface SurveyCardProps {
-  survey: Survey
+  survey: Survey,
+  handleDeleteSurvey: (surveyId: number) => void
 }
 
 const SurveyCard = (props: SurveyCardProps): JSX.Element => {
-  const { survey } = props
+  const { survey, handleDeleteSurvey } = props
 
   return (  
     <article className={styles.surveyCard}>
@@ -20,6 +21,7 @@ const SurveyCard = (props: SurveyCardProps): JSX.Element => {
       <Link to={`/surveys/${survey.id}`}>
         Take survey
       </Link>
+      <button onClick={() => handleDeleteSurvey(survey.id)}>X</button>
     </article>
   );
 }

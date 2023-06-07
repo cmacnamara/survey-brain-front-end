@@ -48,5 +48,19 @@ async function createResponse(surveyId: number, response: ResponseToQuestion): P
   return await res.json() as ResponseToQuestion
 }
 
+async function deleteSurvey(surveyId: number): Promise<Survey> {
+  const res = await fetch(`${BASE_URL}/${surveyId}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': `Bearer ${tokenService.getToken()}` }
+  })
+  return await res.json() as Survey
+}
 
-export { getAllSurveys, createSurvey, createQuestion, show, createResponse }
+export { 
+  getAllSurveys, 
+  createSurvey, 
+  createQuestion, 
+  show, 
+  createResponse, 
+  deleteSurvey 
+}

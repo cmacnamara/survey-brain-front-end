@@ -72,6 +72,7 @@ function App(): JSX.Element {
             <ProtectedRoute user={user}>
               <Surveys 
                 surveys={surveys}
+                setSurveys={setSurveys}
               />
             </ProtectedRoute>
           }

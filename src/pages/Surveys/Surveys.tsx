@@ -7,15 +7,24 @@ import styles from './Surveys.module.css'
 // npm modules
 import { NavLink } from 'react-router-dom'
 
+// services
+import * as surveyService from '../../services/surveyService'
+
 // types
 import { Survey } from '../../types/models'
 
 interface SurveysProps {
-  surveys: Survey[];
+  surveys: Survey[],
+  setSurveys: (value: Survey[] | ((prevVar: Survey[]) => Survey[])) => void
 }
 
 const Surveys = (props: SurveysProps) => {
-  const { surveys } = props
+  const { surveys, setSurveys } = props
+
+  const handleDeleteSurvey = async (surveyId: number): Promise<void> => {
+    await surveyService.deleteSurvey(surveyId)
+    setSurveys(surveys.filter((survey: Survey) => survey.id !== surveyId))
+  }
 
   return (
     <main className={styles.surveysContainer}>
@@ -35,7 +44,8 @@ const Surveys = (props: SurveysProps) => {
           surveys.map((survey: Survey) => (
             <SurveyCard 
               key={survey.id}
-              survey={survey} 
+              survey={survey}
+              handleDeleteSurvey={handleDeleteSurvey} 
             />
           ))
         }
