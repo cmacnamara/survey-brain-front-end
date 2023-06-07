@@ -18,7 +18,13 @@ import { Survey, Question } from '../../types/models'
 import { NewSurveyFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
-const CreateSurvey = () => {
+interface CreateSurveyProps {
+  surveys: Survey[],
+  setSurveys: (value: Survey[] | ((prevVar: Survey[]) => Survey[])) => void
+}
+
+const CreateSurvey = (props: CreateSurveyProps) => {
+  const { surveys, setSurveys } = props
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState<NewSurveyFormData>({
@@ -59,6 +65,7 @@ const CreateSurvey = () => {
         saveQuestion(question, newSurvey.id)
       })
 
+      setSurveys([...surveys, newSurvey])
       navigate('/surveys')
     } catch (err) {
       console.log(err)
@@ -141,6 +148,7 @@ const CreateSurvey = () => {
 
         <div className={styles.inputContainer}>
           <button
+            type='submit'
             className={styles.button}
             onClick={handleSubmit}
           >
