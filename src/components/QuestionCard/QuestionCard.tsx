@@ -1,3 +1,6 @@
+// components
+import AnswerChoiceCard from '../AnswerChoiceCard/AnswerChoiceCard';
+
 // css
 import styles from './QuestionCard.module.css'
 
@@ -19,6 +22,14 @@ interface QuestionCardProps {
 const QuestionCard = (props: QuestionCardProps) => {
   const [prompt, setPrompt] = useState('')
   const [questionType, setQuestionType] = useState('Free Response')
+
+  const handleAddAnswerChoice = (): void => {
+    const newAnswer = ''
+    const newData = {...props.formData}
+    newData.questions[props.index].answerChoices.push(newAnswer)
+
+    props.setFormData(newData)
+  }
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const updatedPrompt = evt.target.value
@@ -89,6 +100,25 @@ const QuestionCard = (props: QuestionCardProps) => {
             onChange={handleChange}
           />
         </label>
+        {props.formData.questions[props.index].answerChoices ?
+          props.formData.questions[props.index].answerChoices.map((answerChoice, idx) => (
+            <AnswerChoiceCard
+              key={idx}
+              questionIndex={props.index}
+              index={idx}
+              answerChoice={answerChoice}
+              formData={props.formData}
+              setFormData={props.setFormData} 
+            />
+          ))
+        :
+        ''
+        }
+        <div 
+          className={styles.addQuestionBtn}
+          onClick={handleAddAnswerChoice}>
+            +
+        </div>
       </section>
     )
   }

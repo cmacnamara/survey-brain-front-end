@@ -42,16 +42,6 @@ const CreateSurvey = () => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
 
-  const handleQuestionPromptChange = (index:number, value:string): void => {
-    const newQuestions: Question[] = formData.questions.map((question,idx) => {
-      if(idx === index) {
-        question.prompt = value
-      }
-      return question
-    })
-    setFormData({ ...formData, questions:newQuestions})
-  }
-
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
     try {
