@@ -21,21 +21,19 @@ const QuestionResponseCard = (props: QuestionResponseCardProps) => {
 
   console.log("FORM DATA IS", props.formData);
   
-
-  const handleChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (evt: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>) => {
     const updatedResponse = evt.target.value
     setResponse(updatedResponse)
     
-    //After updating state, use setFormData
     const tempFormData = props.formData
     if(!tempFormData.responses[props.index]) {
       tempFormData.responses.push({
-        profileId: 0,
         questionId: props.question.id,
         content: updatedResponse
       })
+    } else {
+      tempFormData.responses[props.index].content = updatedResponse
     }
-    tempFormData.responses[props.index].content = updatedResponse
     props.setFormData({...tempFormData})
   }
 
@@ -59,7 +57,25 @@ const QuestionResponseCard = (props: QuestionResponseCardProps) => {
   return (  
     <div>
       <h2>{props.index + 1}. {props.question.prompt}</h2>
-      {}
+      {props.question.answerChoices ?
+      <div>
+        {props.question.answerChoices.map((answerChoice,idx) => (
+          <div key={idx}>
+            <input
+              type="radio"
+              name={`question${props.question.id}`}
+              value={answerChoice}
+              id={`choice${idx}`}
+              checked={response === answerChoice}
+              onChange={handleChange} 
+            />
+            <label htmlFor={`choice${idx}`}>{answerChoice}</label>
+          </div>
+          ))}
+      </div>
+      :
+      ''
+      }
     </div>
   );
 }
