@@ -21,20 +21,22 @@ const QuestionCard = (props: QuestionCardProps) => {
   const [questionType, setQuestionType] = useState('Free Response')
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-    setPrompt(evt.target.value)
+    const updatedPrompt = evt.target.value
+    setPrompt(updatedPrompt)
     
     //After updating state, use setFormData
     const tempFormData = props.formData
-    tempFormData.questions[props.index].prompt = prompt 
+    tempFormData.questions[props.index].prompt = updatedPrompt 
     props.setFormData({...tempFormData})
   }
   
   const handleTypeChange = (evt: React.ChangeEvent<HTMLSelectElement>) => {
+    const updatedType = evt.target.value
     setQuestionType(evt.target.value)
   
     //After updating state, use setFormData
     const tempFormData = props.formData
-    tempFormData.questions[props.index].type = questionType 
+    tempFormData.questions[props.index].type = updatedType 
     props.setFormData({...tempFormData})
   }
 
@@ -77,6 +79,15 @@ const QuestionCard = (props: QuestionCardProps) => {
             <option value="Free Response">Free Response</option>
             <option value="Multiple Choice">Multiple Choice</option>
           </select>
+        </label>
+        <label className={styles.inputContainer}>
+          Write a prompt:
+          <input 
+            type="text" 
+            value={prompt}
+            name='questions'
+            onChange={handleChange}
+          />
         </label>
       </section>
     )
