@@ -88,17 +88,17 @@ const QuestionResultCard = (props: QuestionCardProps) => {
           {question.type === "Free Response" ?
           <>
             <h3>Responses</h3>
-          <ul>
-            {question.responses ?
-              question.responses.map((response, idx:number) => (
-                <li key={idx}>
-                    {response.content}
-                </li>
-              ))
-            :
-            ''
-            }
-          </ul>
+            <ul>
+              {question.responses ?
+                question.responses.map((response, idx:number) => (
+                  <li key={idx}>
+                      {response.content}
+                  </li>
+                ))
+              :
+              ''
+              }
+            </ul>
           </>
           :
           ''
