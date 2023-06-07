@@ -25,7 +25,7 @@ export interface Question {
 export interface ResponseToQuestion {
   id?: number;
   profileId: number;
-  questionId: number;
+  questionId: number | undefined;
   content: string;
   createdAt?: string;
   updatedAt?: string;

@@ -1,5 +1,5 @@
 // types
-import { Question } from '../types/models'
+import { Question, ResponseToQuestion } from '../types/models'
 
 /* ---------==== custom forms ====--------- */
 
@@ -7,6 +7,10 @@ export interface NewSurveyFormData {
   title: string;
   description: string;
   questions: Question[];
+}
+
+export interface SubmitSurveyFormData {
+  responses: ResponseToQuestion[];
 }
 
 export interface SurveyMetaInfo {

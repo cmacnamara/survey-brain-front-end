@@ -36,8 +36,6 @@ const CreateSurvey = () => {
   const [message, setMessage] = useState('')
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>) => {
-    console.log("TARGET NAME", evt.target.name);
-    
     setMessage('')
     setFormData({ ...formData, [evt.target.name]: evt.target.value })
   }
@@ -50,7 +48,6 @@ const CreateSurvey = () => {
       }
       setIsSubmitted(true)
 
-      //create an object that just contains survey title and description. use that to send to create survey
       const surveyMetaInfo = {
         title: formData.title,
         description: formData.description
@@ -58,7 +55,6 @@ const CreateSurvey = () => {
 
       const newSurvey = await surveyService.createSurvey(surveyMetaInfo)
 
-      // map through and await creating each question, within which await creating each response option
       formData.questions.forEach(question => {
         saveQuestion(question, newSurvey.id)
       })

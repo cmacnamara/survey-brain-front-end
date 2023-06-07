@@ -15,6 +15,7 @@ import * as surveyService from '../../services/surveyService'
 // types
 import { Survey, Question, ResponseToQuestion } from '../../types/models'
 import { handleErrMsg } from '../../types/validators'
+import { SubmitSurveyFormData } from '../../types/forms'
 
 const TakeSurvey = () => {
   const navigate = useNavigate()
@@ -22,7 +23,9 @@ const TakeSurvey = () => {
   const [survey, setSurvey] = useState<Survey | null>(null)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [message, setMessage] = useState('')
-  const [responses, setResponses] = useState([''])
+  const [formData, setFormData] = useState<SubmitSurveyFormData>({
+    responses: []
+  })
 
   useEffect(() => {
     const fetchSurvey = async () => {
@@ -33,26 +36,14 @@ const TakeSurvey = () => {
   }, [surveyId])
   
   if(!survey) return <h1>Loading...</h1>
-  
-  // if(survey?.surveyQuestions?.length) {
-  //   const tempResponses: string[] = []
-  //   survey.surveyQuestions.forEach(question => {
-  //     tempResponses.push('')
-  //   })
-  //   setResponses(tempResponses)
-  // }
-  
-  console.log("SURVEY IS", survey);
-  console.log("RESPONSES ARE", responses);
-  
-  
+
   const handleSubmit = async (evt: React.FormEvent): Promise<void> => {
     evt.preventDefault()
     try {
       if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
-      responses.forEach(response => saveResponse(response, survey.id, response.questionId))
+      formData.forEach(response => saveResponse(response, survey.id, response.questionId))
       setIsSubmitted(true)
       navigate('/')
     } catch (err) {
@@ -75,27 +66,24 @@ const TakeSurvey = () => {
     }
   }
 
-  const handleResponseChange = (evt: React.ChangeEvent<HTMLTextAreaElement>, idx:number) => {
-    setMessage('')
-    const tempResponses = [...responses]
-    tempResponses[idx].content = evt.target.value
-    setResponses(tempResponses)
-    setSurvey({ ...survey, surveyQuestions: [...survey.surveyQuestions, ]})
-  }
-
   return (  
     <main className={styles.takeSurveyContainer}>
       <h1>{survey.title}</h1>
       <p>{survey.description}</p>
       <p>{message}</p>
-      <form>
+      <form 
+        autoComplete='off' 
+        onSubmit={handleSubmit} 
+        className={styles.newSurveyForm}
+      >
         {survey.surveyQuestions ?
           survey.surveyQuestions.map((question, idx) => (
             <QuestionResponseCard 
-              key={idx} 
+              key={idx}
+              index={idx} 
               question={question}
-              responses={responses}
-              handleResponseChange={handleResponseChange}
+              formData={formData}
+              setFormData={setFormData}
             />
           )) 
           :

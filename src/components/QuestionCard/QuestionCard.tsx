@@ -79,7 +79,6 @@ const QuestionCard = (props: QuestionCardProps) => {
   } else {
     return (
       <section className={styles.questionCard}>
-        <p>{props.question.prompt}</p>
         <label className={styles.inputContainer}>
           Choose a type of question
           <select 
