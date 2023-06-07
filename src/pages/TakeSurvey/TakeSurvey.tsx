@@ -43,7 +43,7 @@ const TakeSurvey = () => {
       if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
-      formData.forEach(response => saveResponse(response, survey.id, response.questionId))
+      formData.responses.forEach(response => saveResponse(response, survey.id))
       setIsSubmitted(true)
       navigate('/')
     } catch (err) {
@@ -53,12 +53,12 @@ const TakeSurvey = () => {
     }
   }
 
-  const saveResponse = async (response: ResponseToQuestion, surveyId: number, questionId: number): Promise<void> => {
+  const saveResponse = async (response: ResponseToQuestion, surveyId: number): Promise<void> => {
     try {
       if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
-      const newResponse = await surveyService.submitResponse(surveyId, questionId, response)
+      const newResponse = await surveyService.createResponse(surveyId, response)
     } catch (err) {
       console.log(err)
       handleErrMsg(err, setMessage)

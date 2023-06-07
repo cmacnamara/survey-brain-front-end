@@ -39,9 +39,14 @@ async function show(surveyId: string | undefined): Promise<Survey> {
   return await res.json() as Survey
 }
 
-async function submitResponse(surveyId: number, questionId: number, response: ResponseToQuestion): Promise<Response> {
-
+async function createResponse(surveyId: number, response: ResponseToQuestion): Promise<ResponseToQuestion> {
+  const res = await fetch(`${BASE_URL}/${surveyId}/questions/${response.questionId}/responses`, {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${tokenService.getToken()}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(response),
+  })
+  return await res.json() as ResponseToQuestion
 }
 
 
-export { getAllSurveys, createSurvey, createQuestion, show, submitResponse }
+export { getAllSurveys, createSurvey, createQuestion, show, createResponse }
