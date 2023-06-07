@@ -12,6 +12,7 @@ import Surveys from './pages/Surveys/Surveys'
 import CreateSurvey from './pages/CreateSurvey/CreateSurvey'
 import TakeSurvey from './pages/TakeSurvey/TakeSurvey'
 import EditSurvey from './pages/EditSurvey/EditSurvey'
+import SurveyResults from './pages/SurveyResults/SurveyResults'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -101,12 +102,16 @@ function App(): JSX.Element {
           }
         />
         <Route
-          path="/surveys/:surveyId"
+          path="/surveys/:surveyId/results"
           element={
             <ProtectedRoute user={user}>
-              <TakeSurvey />
+              <SurveyResults />
             </ProtectedRoute>
           }
+        />
+        <Route
+          path="/surveys/:surveyId"
+          element={<TakeSurvey />}
         />
         <Route
           path="/auth/signup"

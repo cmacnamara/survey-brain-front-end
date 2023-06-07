@@ -75,6 +75,7 @@ const QuestionCard = (props: QuestionCardProps) => {
             onChange={handleChange}
           />
         </label>
+        {/* <button onClick={handleDeleteQuestion}>X</button> */}
       </section>
     );
   } else {

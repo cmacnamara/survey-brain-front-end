@@ -35,8 +35,9 @@ const CreateSurvey = (props: CreateSurveyProps) => {
       type: 'Free Response',
       answerChoices: [],
       required: false,
-      edited: false
-    }]
+      edited: false,
+    }],
+    surveyQuestions: []
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [message, setMessage] = useState('')

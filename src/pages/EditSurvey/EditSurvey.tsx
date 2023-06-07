@@ -80,9 +80,6 @@ const EditSurvey = (props: EditSurveyProps) => {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
       if(question) {
-        // If question does not yet exist, call the createQuestion function, else call update
-        console.log("Survey data", survey)
-        console.log("Question data", question)
         const questionExists = survey?.surveyQuestions?.find((existingQuestion: Question) => existingQuestion.prompt === question.prompt)
 
         if(questionExists) {
