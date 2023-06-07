@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 // types
 import { Question } from '../../types/models'
-import { NewSurveyFormData } from '../../types/forms'
+import { NewSurveyFormData, EditSurveyFormData } from '../../types/forms'
 
 interface QuestionCardProps {
   key:number,
@@ -26,7 +26,8 @@ const QuestionCard = (props: QuestionCardProps) => {
   const handleAddAnswerChoice = (): void => {
     const newAnswer = ''
     const newData = {...props.formData}
-    newData.questions[props.index].answerChoices.push(newAnswer)
+    if(newData.questions)
+      newData.questions[props.index].answerChoices.push(newAnswer)
 
     props.setFormData(newData)
   }

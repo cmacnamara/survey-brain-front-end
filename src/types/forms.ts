@@ -7,6 +7,13 @@ export interface NewSurveyFormData {
   title: string;
   description: string;
   questions: Question[];
+  surveyQuestions: Question[];
+}
+
+export interface EditSurveyFormData {
+  title: string;
+  description: string;
+  surveyQuestions: Question[];
 }
 
 export interface SubmitSurveyFormData {

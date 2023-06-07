@@ -15,7 +15,7 @@ import * as surveyService from '../../services/surveyService'
 
 // types
 import { Survey, Question } from '../../types/models'
-import { NewSurveyFormData } from '../../types/forms'
+import { NewSurveyFormData, EditSurveyFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
 interface EditSurveyProps {
@@ -24,20 +24,14 @@ interface EditSurveyProps {
 }
 
 const EditSurvey = (props: EditSurveyProps) => {
-  const { surveys, setSurveys } = props
   const navigate = useNavigate()
   const {surveyId} = useParams()
   const {state} = useLocation()
-
-  console.log("USE LOCATION STATE", state);
-  
-
   const [survey, setSurvey] = useState<Survey | null>(null)
-  const [formData, setFormData] = useState<NewSurveyFormData>({
-    title: '',
-    description: '',
-    questions: []
-  })
+  const [formData, setFormData] = useState<NewSurveyFormData>(state)
+  formData.questions = formData.surveyQuestions
+
+  console.log("SURVEY STATE", formData);
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [message, setMessage] = useState('')
   
@@ -48,17 +42,6 @@ const EditSurvey = (props: EditSurveyProps) => {
     }
     fetchSurvey()
   }, [surveyId])
-  
-  if(survey) {
-    formData.title = survey.title
-    formData.description = survey.description
-    if(survey.surveyQuestions) {
-      formData.questions = [...survey.surveyQuestions]
-    }
-  }
-
-  console.log("FORM DATA", formData);
-  
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage('')
@@ -78,13 +61,13 @@ const EditSurvey = (props: EditSurveyProps) => {
         description: formData.description
       }
 
-      const newSurvey = await surveyService.createSurvey(surveyMetaInfo)
+      if(survey && formData.questions){
+        const updatedSurvey = await surveyService.updateSurvey(survey.id, surveyMetaInfo)
+        formData.questions.forEach(question => {
+          saveQuestion(question, survey.id)
+        })
+      }
 
-      formData.questions.forEach(question => {
-        saveQuestion(question, newSurvey.id)
-      })
-
-      setSurveys([...surveys, newSurvey])
       navigate('/surveys')
     } catch (err) {
       console.log(err)
@@ -98,7 +81,9 @@ const EditSurvey = (props: EditSurveyProps) => {
       if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
-      const newQuestion = await surveyService.createQuestion(question, surveyId)
+      if(question) {
+        const updatedQuestion = await surveyService.updateQuestion(surveyId, question.id, question)
+      }
     } catch (err) {
       console.log(err)
       handleErrMsg(err, setMessage)
@@ -115,7 +100,11 @@ const EditSurvey = (props: EditSurveyProps) => {
       edited: false
     }
     const newData = {...formData}
-    newData.questions.push(newQuestion)
+    
+    if(newData.questions) {
+      newData.questions.push(newQuestion)
+      console.log("NEW DATA", newData);
+    }
 
     setFormData(newData)
   }
@@ -124,8 +113,11 @@ const EditSurvey = (props: EditSurveyProps) => {
 
   if(!survey) return <h1>Loading...</h1>
 
+  console.log("Form data", formData);
+  
+
   return (
-    <main className={styles.createSurveyContainer}>
+    <main className={styles.editSurveyContainer}>
       <h1>Edit Survey</h1>
       <p className={styles.message}>{message}</p>
       <form autoComplete='off' onSubmit={handleSubmit} className={styles.newSurveyForm}>
@@ -151,7 +143,8 @@ const EditSurvey = (props: EditSurveyProps) => {
           </label>
         </div>
 
-        {questions.map((question,idx) => (
+        {formData.questions ?
+        formData.questions.map((question,idx) => (
           <QuestionCard 
             key={idx}
             index={idx}
@@ -159,7 +152,10 @@ const EditSurvey = (props: EditSurveyProps) => {
             formData={formData}
             setFormData={setFormData}
           />
-        ))}
+        ))
+        :
+        ''
+        }
 
         <div 
           className={styles.addQuestionBtn}

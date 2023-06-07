@@ -56,11 +56,37 @@ async function deleteSurvey(surveyId: number): Promise<Survey> {
   return await res.json() as Survey
 }
 
+async function updateSurvey(surveyId: number, updatedSurveyFormData: SurveyMetaInfo): Promise<Survey> {
+  const res = await fetch(`${BASE_URL}/${surveyId}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updatedSurveyFormData)
+  })
+  return await res.json() as Survey
+}
+
+async function updateQuestion(surveyId: number, questionId: number | undefined, updatedQuestion: Question): Promise<Survey> {
+  const res = await fetch(`${BASE_URL}/${surveyId}/questions/${questionId}`, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${tokenService.getToken()}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(updatedQuestion)
+  })
+  return await res.json() as Survey
+}
+
 export { 
   getAllSurveys, 
   createSurvey, 
   createQuestion, 
   show, 
   createResponse, 
-  deleteSurvey 
+  deleteSurvey,
+  updateSurvey,
+  updateQuestion 
 }
