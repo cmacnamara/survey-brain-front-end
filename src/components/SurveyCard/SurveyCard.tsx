@@ -21,6 +21,9 @@ const SurveyCard = (props: SurveyCardProps): JSX.Element => {
       <Link to={`/surveys/${survey.id}`}>
         Take survey
       </Link>
+      <Link to={`/surveys/${survey.id}/edit`} state={survey}>
+        Edit survey
+      </Link>
       <button onClick={() => handleDeleteSurvey(survey.id)}>X</button>
     </article>
   );

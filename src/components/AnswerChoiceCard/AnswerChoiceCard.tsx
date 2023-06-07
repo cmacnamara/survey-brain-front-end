@@ -18,7 +18,7 @@ interface AnswerChoiceCardProps {
 }
 
 const AnswerChoiceCard = (props: AnswerChoiceCardProps) => {
-  const [answerChoiceText, setAnswerChoiceText] = useState('')
+  const [answerChoiceText, setAnswerChoiceText] = useState(props.answerChoice)
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const updatedAnswerChoice = evt.target.value

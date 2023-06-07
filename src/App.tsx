@@ -11,6 +11,7 @@ import ChangePassword from './pages/ChangePassword/ChangePassword'
 import Surveys from './pages/Surveys/Surveys'
 import CreateSurvey from './pages/CreateSurvey/CreateSurvey'
 import TakeSurvey from './pages/TakeSurvey/TakeSurvey'
+import EditSurvey from './pages/EditSurvey/EditSurvey'
 
 // components
 import NavBar from './components/NavBar/NavBar'
@@ -82,6 +83,17 @@ function App(): JSX.Element {
           element={
             <ProtectedRoute user={user}>
               <CreateSurvey
+                surveys={surveys} 
+                setSurveys={setSurveys}
+              />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/surveys/:surveyId/edit"
+          element={
+            <ProtectedRoute user={user}>
+              <EditSurvey
                 surveys={surveys} 
                 setSurveys={setSurveys}
               />

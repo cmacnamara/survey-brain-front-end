@@ -20,8 +20,8 @@ interface QuestionCardProps {
 }
 
 const QuestionCard = (props: QuestionCardProps) => {
-  const [prompt, setPrompt] = useState('')
-  const [questionType, setQuestionType] = useState('Free Response')
+  const [prompt, setPrompt] = useState(props.question.prompt)
+  const [questionType, setQuestionType] = useState(props.question.type)
 
   const handleAddAnswerChoice = (): void => {
     const newAnswer = ''
