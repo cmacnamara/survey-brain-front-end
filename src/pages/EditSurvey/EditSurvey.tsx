@@ -30,8 +30,6 @@ const EditSurvey = (props: EditSurveyProps) => {
   const [survey, setSurvey] = useState<Survey | null>(null)
   const [formData, setFormData] = useState<NewSurveyFormData>(state)
   formData.questions = formData.surveyQuestions
-
-  console.log("SURVEY STATE", formData);
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [message, setMessage] = useState('')
   
@@ -82,7 +80,16 @@ const EditSurvey = (props: EditSurveyProps) => {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
       if(question) {
-        const updatedQuestion = await surveyService.updateQuestion(surveyId, question.id, question)
+        // If question does not yet exist, call the createQuestion function, else call update
+        console.log("Survey data", survey)
+        console.log("Question data", question)
+        const questionExists = survey?.surveyQuestions?.find((existingQuestion: Question) => existingQuestion.prompt === question.prompt)
+
+        if(questionExists) {
+          const updatedQuestion = await surveyService.updateQuestion(surveyId, question.id, question)
+        } else {
+          const newQuestion = await surveyService.createQuestion(question, surveyId)
+        }
       }
     } catch (err) {
       console.log(err)
@@ -103,7 +110,6 @@ const EditSurvey = (props: EditSurveyProps) => {
     
     if(newData.questions) {
       newData.questions.push(newQuestion)
-      console.log("NEW DATA", newData);
     }
 
     setFormData(newData)
@@ -112,9 +118,6 @@ const EditSurvey = (props: EditSurveyProps) => {
   const { title, description, questions } = formData
 
   if(!survey) return <h1>Loading...</h1>
-
-  console.log("Form data", formData);
-  
 
   return (
     <main className={styles.editSurveyContainer}>
