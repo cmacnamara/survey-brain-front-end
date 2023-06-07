@@ -18,8 +18,6 @@ interface QuestionResponseCardProps {
 
 const QuestionResponseCard = (props: QuestionResponseCardProps) => {
   const [response, setResponse] = useState('')
-
-  console.log("FORM DATA IS", props.formData);
   
   const handleChange = (evt: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>) => {
     const updatedResponse = evt.target.value

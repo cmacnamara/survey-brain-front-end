@@ -11,6 +11,7 @@ import { useState, useEffect } from "react"
 
 // services
 import * as surveyService from '../../services/surveyService'
+import * as analysisService from '../../services/analysisService'
 
 // types
 import { Survey, Question, ResponseToQuestion } from '../../types/models'
@@ -28,13 +29,21 @@ const SurveyResults = () => {
       setSurvey(data)
     }
     fetchSurvey()
-  }, [surveyId])
+    
+  }, [surveyId])  
+
+  const getAnalysis = async () => {
+    const analysis = await analysisService.getSentimentAnalysis("The service was terrible! I hated the pizza and the drinks were watered down. I hope the owner takes heed of this review!")
+    console.log("ANALYSIS", analysis);
+    
+  }
   
   if(!survey) return <h1>Loading Results...</h1>
-
+  console.log("Survey object", survey);
+  
   return (  
-    <main className={styles.takeSurveyContainer}>
-      <h1>{survey.title}</h1>
+    <main className={styles.surveyResultsContainer}>
+      <h1>Results for "{survey.title}"</h1>
       <p>{survey.description}</p>
       {survey.surveyQuestions ?
         survey.surveyQuestions.map((question:Question, idx:number) => (
@@ -47,6 +56,7 @@ const SurveyResults = () => {
       :
       ''
       }
+      <button onClick={getAnalysis}>Get Analysis</button>
     </main>
   );
 }

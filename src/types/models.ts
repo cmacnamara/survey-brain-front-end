@@ -17,6 +17,7 @@ export interface Question {
   surveyId?: number;
   answerChoices: string[];
   required: boolean;
+  responses?: ResponseToQuestion[];
   createdAt?: string;
   updatedAt?: string;
   edited: boolean;
@@ -29,6 +30,23 @@ export interface ResponseToQuestion {
   content: string;
   createdAt?: string;
   updatedAt?: string;
+}
+
+export interface SentimentWordAnalysis {
+  score: number;
+  word: string;
+}
+
+export interface SentimentAnalysis {
+  author: string;
+  email: string;
+  keywords: SentimentWordAnalysis[];
+  ratio: number;
+  result_code: string;
+  result_msg: string;
+  score: number;
+  type: string;
+  version: string;
 }
 
 /* ---------===== auth models =====--------- */
