@@ -102,15 +102,10 @@ const CreateSurvey = () => {
       required: false,
       edited: false
     }
-    
-    setFormData((formData) => {
-      console.log("SETTING FORM DATA");
-      const newData = {...formData}
-      newData.questions.push(newQuestion)
-      console.log("NEW DATA", newData);
-      
-      return newData
-    })
+    const newData = {...formData}
+    newData.questions.push(newQuestion)
+
+    setFormData(newData)
   }
 
   const { title, description, questions } = formData
@@ -154,7 +149,7 @@ const CreateSurvey = () => {
 
         <div 
           className={styles.addQuestionBtn}
-          onClick={() => handleAddQuestion()}>
+          onClick={handleAddQuestion}>
             +
         </div>
 
