@@ -56,7 +56,6 @@
 .questionRow {
   display: flex;
   align-items: center;
-  justify-content: ;
 }
 
 table input {
@@ -70,4 +69,20 @@ table input {
 
 .textInput {
   width: 100%;
+}
+
+.createSurveyBtns {
+  margin: 0;
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  background-color: #C57F1E;
+}
+
+.createSurveyBtns:hover {
+  cursor: pointer;
+  background-color: #7a4e11;
 }

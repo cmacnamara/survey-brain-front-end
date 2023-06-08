@@ -112,27 +112,49 @@ const EditSurvey = () => {
     <main className={styles.editSurveyContainer}>
       <h1>Edit Survey</h1>
       <p className={styles.message}>{message}</p>
-      <form autoComplete='off' onSubmit={handleSubmit} className={styles.newSurveyForm}>
-        <div>
-          <label className={styles.inputContainer}>
-            Edit survey name
-          <input 
-            type="text" 
-            value={title} 
-            name="title"
-            placeholder='Name of your survey' 
-            onChange={handleChange} 
-          />
-          </label>
-          <label className={styles.inputContainer}>
-            Edit description of your survey
-            <textarea 
-              value={description} 
-              name="description" 
-              onChange={handleChange}>
-                Edit description of your survey
-            </textarea>
-          </label>
+      <form 
+        autoComplete='off' 
+        onSubmit={handleSubmit} 
+        className={styles.editSurveyForm}
+      >
+        <div className={styles.inputRContainer}>
+          <table className={styles.questionTable}>
+            <tr>
+              <td>
+                <label className={styles.inputContainer}>
+                  Edit survey name:
+                </label>
+              </td>
+              <td>      
+                <input 
+                  type="text" 
+                  value={title} 
+                  name="title"
+                  className={styles.textInput} 
+                  placeholder='Name of your survey' 
+                  onChange={handleChange} 
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label className={styles.inputContainer}>
+                  Edit description of your survey:
+                </label>
+              </td>
+              <td>
+                <textarea 
+                  value={description} 
+                  name="description"
+                  className={styles.descriptionTable}  
+                  onChange={handleChange}
+                  placeholder='Edit description of your survey'
+                  cols={50}
+                >
+                </textarea>
+              </td>
+            </tr>
+          </table>
         </div>
 
         {formData.questions ?
@@ -155,16 +177,16 @@ const EditSurvey = () => {
             +
         </div>
 
-        <div className={styles.inputContainer}>
+        <div className={styles.editSurveyBtnGroup}>
           <button
             type='submit'
-            className={styles.button}
+            className={styles.editSurveyBtns}
             onClick={handleSubmit}
           >
             Save
           </button>
           <Link to="/surveys">
-            <button>Cancel</button>
+            <button className={styles.editSurveyBtns}>Cancel</button>
           </Link>
         </div>
       </form>

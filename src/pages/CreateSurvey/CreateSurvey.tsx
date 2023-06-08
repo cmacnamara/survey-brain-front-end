@@ -167,13 +167,13 @@ const CreateSurvey = (props: CreateSurveyProps) => {
         <div className={styles.newSurveyBtnGroup}>
           <button
             type='submit'
-            className={styles.button}
+            className={styles.createSurveyBtns}
             onClick={handleSubmit}
           >
             Submit
           </button>
           <Link to="/surveys">
-            <button>Cancel</button>
+            <button className={styles.createSurveyBtns}>Cancel</button>
           </Link>
         </div>
       </form>
