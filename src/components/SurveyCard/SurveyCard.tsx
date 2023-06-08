@@ -30,17 +30,21 @@ const SurveyCard = (props: SurveyCardProps): JSX.Element => {
   
   return (  
     <article className={styles.surveyCard}>
-      <h3>{survey.title}</h3>
-      <Link to={`/surveys/${survey.id}`}>
-        Take survey
-      </Link>
-      <Link to={`/surveys/${survey.id}/edit`} state={surveyDetailed}>
-        Edit survey
-      </Link>
-      <Link to={`/surveys/${survey.id}/results`}>
-        Results
-      </Link>
-      <button onClick={() => handleDeleteSurvey(survey.id)}>X</button>
+      <div className={styles.surveyCardHeader}>
+        <h3 className={styles.surveyCardTitle}>{survey.title}</h3>
+        <button onClick={() => handleDeleteSurvey(survey.id)}>Delete</button>
+      </div>
+      <div className={styles.btnContainer}>
+        <Link to={`/surveys/${survey.id}`}>
+          <button className={styles.cardButton}>Take survey</button>
+        </Link>
+        <Link to={`/surveys/${survey.id}/edit`} state={surveyDetailed}>
+          <button className={styles.cardButton}>Edit survey</button>
+        </Link>
+        <Link to={`/surveys/${survey.id}/results`}>
+          <button className={styles.cardButton}>Results</button>
+        </Link>
+      </div>
     </article>
   );
 }

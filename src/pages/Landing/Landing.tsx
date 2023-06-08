@@ -1,3 +1,6 @@
+// assets
+import logo from '../../assets/branding/logo_transparent.png'
+
 // css
 import styles from './Landing.module.css'
 
@@ -16,16 +19,15 @@ const Landing = (props: LandingProps): JSX.Element => {
 
   return (
     <main className={styles.container}>
-      <h1>SurveyBrain</h1>
-      <h3>Insights that matter.</h3>
-      <h1>LOGO IMAGE</h1>
+      <img className={styles.logo} src={logo} />
+      <h3 className={styles.slogan}>Insights that matter.</h3>
       {user ? 
-        <NavLink to='/surveys'>
-          <button>My Surveys</button>
+        <NavLink className={styles.navLink} to='/surveys'>
+          <button className={styles.landingBtn}>My Surveys</button>
         </NavLink>
       :
-        <NavLink to='/auth/signup'>
-          <button>Get Started</button>
+        <NavLink className={styles.navLink} to='/auth/signup'>
+          <button className={styles.landingBtn}>Get Started</button>
         </NavLink>
       }
     </main>

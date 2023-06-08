@@ -34,25 +34,27 @@ const Surveys = (props: SurveysProps) => {
   return (
     <main className={styles.surveysContainer}>
       <div>
-        <h1>Create a survey</h1>
-        <NavLink to="/surveys/create">
+        <h1 className={styles.sectionTitle}>Create a survey</h1>
+        <NavLink className={styles.newSurveyLink} to="/surveys/create">
           <div className={styles.newSurveyBtn}>
             +
           </div>
         </NavLink>
       </div>
       <div>
-        <h1>My surveys</h1>
+        <h1 className={styles.sectionTitle}>My surveys</h1>
         {!surveys.length ?
           <h3>No surveys created yet</h3>
           :
-          surveys.map((survey: Survey) => (
-            <SurveyCard 
-              key={survey.id}
-              survey={survey}
-              handleDeleteSurvey={handleDeleteSurvey} 
-            />
-          ))
+          <div className={styles.surveyCardContainer}>
+            {surveys.map((survey: Survey) => (
+              <SurveyCard 
+                key={survey.id}
+                survey={survey}
+                handleDeleteSurvey={handleDeleteSurvey} 
+              />
+            ))}
+          </div>
         }
       </div>
     </main>

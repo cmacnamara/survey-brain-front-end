@@ -23,8 +23,9 @@ const SurveyResults = () => {
       const data = await surveyService.show(surveyId)
       setSurvey(data)
     }
-    fetchSurvey()
-    
+    fetchSurvey() 
+    console.log('I fire once');
+       
   }, [surveyId])  
   
   if(!survey) return <h1>Loading Results...</h1>

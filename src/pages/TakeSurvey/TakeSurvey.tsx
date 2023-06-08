@@ -42,7 +42,7 @@ const TakeSurvey = () => {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
       formData.responses.forEach(response => saveResponse(response, survey.id))
-      navigate('/')
+      navigate('/surveys')
     } catch (err) {
       console.log(err)
       handleErrMsg(err, setMessage)

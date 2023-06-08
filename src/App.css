@@ -12,8 +12,8 @@ body {
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #deddc8;
+  background-color: #141301;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,11 +24,12 @@ body {
 
 a,
 a:visited {
-  color: #00d8ff;
+  color: #deddc8;
   text-decoration: none;
 }
 
 nav {
+  overflow:hidden;
   top: 0;
   z-index: 1;
   width: 100%;
@@ -37,8 +38,8 @@ nav {
   position: fixed;
   padding: 12px 20px;
   align-items: center;
-  background: white;
-  border-bottom: 1px solid rgb(200, 200, 200);
+  background-color: #433f06;
+  gap: 30px;
 }
 
 nav img {
@@ -46,7 +47,7 @@ nav img {
 }
 
 nav ul {
-  margin: 0;
+  margin: 0 10px 0 0;
   width: 100%;
   display: flex;
   list-style: none;
@@ -58,4 +59,24 @@ nav ul {
 nav li {
   margin-left: 35px;
   text-align: right;
+}
+
+nav a {
+  text-decoration: underline;
+}
+
+nav button {
+  margin: 0;
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+  font-size: 20px;
+  background-color: #C57F1E;
+}
+
+nav button:hover {
+  cursor: pointer;
+  background-color: #7a4e11;
 }

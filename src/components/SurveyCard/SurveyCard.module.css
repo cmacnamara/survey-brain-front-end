@@ -1,0 +1,41 @@
+.surveyCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid white 1px;
+  width: 100%;
+  height: 220px;
+  padding: 14px 21px;
+  border-radius: 5px;
+  background-color: #deddc8;
+  color: black;
+  gap: 20px;
+}
+
+.btnContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.cardButton {
+  margin: 0;
+  border: 0;
+  padding: 4px 8px;
+  border-radius: 5px;
+  width: 125px;
+  height: 40px;
+  font-size: 20px;
+  background-color: #C57F1E;
+}
+
+.surveyCardHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.surveyCardTitle {
+  margin: 0;
+}

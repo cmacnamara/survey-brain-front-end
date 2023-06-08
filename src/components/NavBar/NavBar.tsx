@@ -26,12 +26,24 @@ const NavBar = (props: NavBarProps): JSX.Element => {
       }
       {user ?
         <ul>
-          <li><NavLink to="" onClick={handleLogout}>LOG OUT</NavLink></li>
+          <li>
+            <NavLink to="" onClick={handleLogout}>
+              <button>Log Out</button>
+            </NavLink>
+          </li>
         </ul>
       :
         <ul>
-          <li><NavLink to="/auth/login">Log In</NavLink></li>
-          <li><NavLink to="/auth/signup">Sign Up</NavLink></li>
+          <li>
+            <NavLink to="/auth/login">
+              <button>Log In</button>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/auth/signup">
+              <button>Sign Up</button>
+            </NavLink>
+          </li>
         </ul>
       }
     </nav>

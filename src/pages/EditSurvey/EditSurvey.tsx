@@ -74,10 +74,7 @@ const EditSurvey = () => {
         if(survey?.surveyQuestions?.length) {
           questionExists = idx < survey?.surveyQuestions?.length
         }
-
-        console.log(`Question with prompt ${question.prompt} exists`, questionExists);
         
-
         if(questionExists) {
           await surveyService.updateQuestion(surveyId, question.id, question)
         } else {

@@ -2,8 +2,14 @@
   margin-top: 100px;
 }
 
+.newSurveyLink {
+  width: 20px;
+}
+
 .newSurveyBtn {
-  border: 2px white solid;
+  border: 2px #C57F1E solid;
+  color: #C57F1E;
+  margin-left: 40px;
   width: 50px;
   height: 50px;
   display: flex;
@@ -11,4 +17,40 @@
   justify-content: center;
   font-size: 30px;
   text-decoration: none;
+}
+
+.newSurveyBtn:hover {
+  border: 2px #7a4e11 solid;
+  color: #7a4e11;
+  cursor: pointer;
+}
+
+.surveyCardContainer {
+  gap: 14px;
+  width: 100%;
+  display: grid;
+  padding: 21px;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.sectionTitle {
+  margin-left: 25px;
+}
+
+@media only screen and (min-width: 900px) {
+  .surveyCardContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .surveyCardContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .surveyCardContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

@@ -43,14 +43,14 @@ const QuestionResultCard = (props: QuestionCardProps) => {
     const fetchAnalysis = async (): Promise<void> => {
         if(overallAnalysis?.author) return
         const analysis = await analysisService.getSentimentAnalysis(allResponses)
-        console.log("CALLING API");
+        console.log(`CALLING API FOR ${question.prompt}`);
         
         setOverallAnalysis(analysis)
     }
     fetchAnalysis()
   }, [overallAnalysis, allResponses])
 
-  console.log("OVERALL ANALYSIS", overallAnalysis);
+  //console.log("OVERALL ANALYSIS", overallAnalysis);
   
   return (
     <section className={styles.questionResultCard}>
