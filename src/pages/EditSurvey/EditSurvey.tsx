@@ -56,12 +56,15 @@ const EditSurvey = (props: EditSurveyProps) => {
       }
 
       if(survey && formData.questions){
+        const tempSurveys = [...props.surveys]
         const updatedSurvey = await surveyService.updateSurvey(survey.id, surveyMetaInfo)
         formData.questions.forEach((question, idx:number) => {
           saveQuestion(question, survey.id, idx)
         })
+        const idxOfCurrArray = props.surveys.findIndex(surveyObj => surveyObj.id === survey.id)
+        tempSurveys.splice(idxOfCurrArray, 1, updatedSurvey)
+        props.setSurveys([...tempSurveys])
       }
-      props.setSurveys([...props.surveys])
 
       navigate('/surveys')
     } catch (err) {

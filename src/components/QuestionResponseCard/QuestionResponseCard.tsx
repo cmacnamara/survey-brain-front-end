@@ -18,6 +18,8 @@ interface QuestionResponseCardProps {
 
 const QuestionResponseCard = (props: QuestionResponseCardProps) => {
   const [response, setResponse] = useState('')
+
+  //console.log("ID for " + props.question.prompt + " is " + props.question.id);
   
   const handleChange = (evt: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>) => {
     const updatedResponse = evt.target.value

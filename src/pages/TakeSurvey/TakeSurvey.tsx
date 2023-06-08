@@ -31,6 +31,8 @@ const TakeSurvey = () => {
       setSurvey(data)
     }
     fetchSurvey()
+    console.log("I fire once");
+    
   }, [surveyId])
   
   if(!survey) return <h1>Loading...</h1>
