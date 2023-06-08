@@ -116,7 +116,7 @@ const QuestionCard = (props: QuestionCardProps) => {
         ''
         }
         <div 
-          className={styles.addQuestionBtn}
+          className={styles.addAnswerChoiceBtn}
           onClick={handleAddAnswerChoice}>
             +
         </div>

@@ -32,7 +32,7 @@ const SurveyCard = (props: SurveyCardProps): JSX.Element => {
     <article className={styles.surveyCard}>
       <div className={styles.surveyCardHeader}>
         <h3 className={styles.surveyCardTitle}>{survey.title}</h3>
-        <button onClick={() => handleDeleteSurvey(survey.id)}>Delete</button>
+        <button className={styles.deleteBtn} onClick={() => handleDeleteSurvey(survey.id)}>Delete</button>
       </div>
       <div className={styles.btnContainer}>
         <Link to={`/surveys/${survey.id}`}>

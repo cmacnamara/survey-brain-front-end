@@ -1,12 +1,34 @@
 .createSurveyContainer {
-  margin-top: 100px;
+  margin: 100px 0 0 20px;
+}
+
+.newSurveyForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.metaInfoCardContainers {
+  display: flex;
+  flex-direction: column;
+  border: solid pink 2px;
+}
+
+.inputContainer {
+  display: flex;
+  gap: 20px;
+  border: solid white 2px;
 }
 
 .addQuestionBtn {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: solid white 1px;
+  border: solid #deddc8 2px;
+  color:#deddc8;
+  font-weight: bold;
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -14,4 +36,11 @@
 
 .addQuestionBtn:hover {
   cursor: pointer;
+}
+
+.newSurveyBtnGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }

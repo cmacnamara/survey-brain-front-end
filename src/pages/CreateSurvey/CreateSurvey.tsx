@@ -101,10 +101,14 @@ const CreateSurvey = (props: CreateSurveyProps) => {
 
   return (
     <main className={styles.createSurveyContainer}>
-      <h1>Create Survey</h1>
+      <h1>New Survey</h1>
       <p className={styles.message}>{message}</p>
-      <form autoComplete='off' onSubmit={handleSubmit} className={styles.newSurveyForm}>
-        <div>
+      <form 
+        autoComplete='off' 
+        onSubmit={handleSubmit} 
+        className={styles.newSurveyForm}
+      >
+        <div className={styles.metaInfoContainers}>
           <label className={styles.inputContainer}>
             Write a name for your survey
           <input 
@@ -142,7 +146,7 @@ const CreateSurvey = (props: CreateSurveyProps) => {
             +
         </div>
 
-        <div className={styles.inputContainer}>
+        <div className={styles.newSurveyBtnGroup}>
           <button
             type='submit'
             className={styles.button}
