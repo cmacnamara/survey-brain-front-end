@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 // types
 import { Question } from '../../types/models'
-import { NewSurveyFormData, EditSurveyFormData } from '../../types/forms'
+import { NewSurveyFormData } from '../../types/forms'
 
 interface QuestionCardProps {
   key:number,

@@ -10,7 +10,6 @@ import * as surveyService from '../../services/surveyService'
 
 // types
 import { Survey } from '../../types/models';
-import { NewSurveyFormData } from '../../types/forms'
 
 interface SurveyCardProps {
   survey: Survey,

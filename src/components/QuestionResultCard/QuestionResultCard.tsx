@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import * as analysisService from '../../services/analysisService'
 
 // types
-import { Question, ResponseToQuestion, SentimentAnalysis } from '../../types/models'
+import { Question, SentimentAnalysis } from '../../types/models'
 
 interface QuestionCardProps {
   key:number,

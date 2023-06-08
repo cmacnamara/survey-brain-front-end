@@ -1,7 +1,5 @@
 // components
 import QuestionCard from '../../components/QuestionCard/QuestionCard';
-import AnalysisCard from '../../components/AnalysisCard/AnalysisCard';
-import TallyCard from '../../components/TallyCard/TallyCard';
 
 // css
 import styles from './CreateSurvey.module.css'
@@ -39,7 +37,7 @@ const CreateSurvey = (props: CreateSurveyProps) => {
     }],
     surveyQuestions: []
   })
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  
   const [message, setMessage] = useState('')
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -53,7 +51,6 @@ const CreateSurvey = (props: CreateSurveyProps) => {
       if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
-      setIsSubmitted(true)
 
       const surveyMetaInfo = {
         title: formData.title,
@@ -71,7 +68,6 @@ const CreateSurvey = (props: CreateSurveyProps) => {
     } catch (err) {
       console.log(err)
       handleErrMsg(err, setMessage)
-      setIsSubmitted(false)
     }
   }
 
@@ -80,11 +76,10 @@ const CreateSurvey = (props: CreateSurveyProps) => {
       if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
-      const newQuestion = await surveyService.createQuestion(question, surveyId)
+      await surveyService.createQuestion(question, surveyId)
     } catch (err) {
       console.log(err)
       handleErrMsg(err, setMessage)
-      setIsSubmitted(false)
     }
   }
 

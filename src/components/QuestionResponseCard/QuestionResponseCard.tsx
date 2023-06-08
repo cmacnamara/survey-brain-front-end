@@ -5,7 +5,7 @@ import styles from './QuestionResponseCard.module.css'
 import { useState } from 'react';
 
 // types
-import { Question, ResponseToQuestion } from '../../types/models'
+import { Question } from '../../types/models'
 import { SubmitSurveyFormData } from '../../types/forms'
 
 interface QuestionResponseCardProps {
@@ -37,7 +37,7 @@ const QuestionResponseCard = (props: QuestionResponseCardProps) => {
 
   if(props.question.type === "Free Response") {
     return (  
-      <div>
+      <div className={styles.freeResponse}>
         <h2>{props.index + 1}. {props.question.prompt}</h2>
         <textarea 
           name="response"

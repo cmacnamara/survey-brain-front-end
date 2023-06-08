@@ -1,25 +1,20 @@
 // components
-import QuestionCard from '../../components/QuestionCard/QuestionCard';
 import QuestionResultCard from '../../components/QuestionResultCard/QuestionResultCard';
 
 // css
 import styles from './SurveyResults.module.css'
 
 // npm modules
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 
 // services
 import * as surveyService from '../../services/surveyService'
-import * as analysisService from '../../services/analysisService'
 
 // types
-import { Survey, Question, ResponseToQuestion } from '../../types/models'
-import { handleErrMsg } from '../../types/validators'
-import { SubmitSurveyFormData } from '../../types/forms'
+import { Survey, Question } from '../../types/models'
 
 const SurveyResults = () => {
-  const navigate = useNavigate()
   const {surveyId} = useParams()
   const [survey, setSurvey] = useState<Survey | null>(null)
 

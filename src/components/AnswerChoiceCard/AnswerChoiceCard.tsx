@@ -5,7 +5,6 @@ import styles from './AnswerChoiceCard.module.css'
 import { useState } from 'react';
 
 // types
-import { Question } from '../../types/models'
 import { NewSurveyFormData } from '../../types/forms'
 
 interface AnswerChoiceCardProps {
