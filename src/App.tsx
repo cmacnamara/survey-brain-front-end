@@ -94,10 +94,7 @@ function App(): JSX.Element {
           path="/surveys/:surveyId/edit"
           element={
             <ProtectedRoute user={user}>
-              <EditSurvey
-                surveys={surveys} 
-                setSurveys={setSurveys}
-              />
+              <EditSurvey />
             </ProtectedRoute>
           }
         />
