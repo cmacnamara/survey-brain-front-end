@@ -3,6 +3,7 @@
   flex-direction: column;
   padding: 20px;
   width: 90%;
+  max-width: 980px;
   border-radius: 5px;
   background-color: #deddc8;
   color: black;
@@ -24,4 +25,22 @@
 
 .addAnswerChoiceBtn:hover {
   cursor: pointer;
+  color: #5a5607;
+  border-color: #5a5607;
+}
+
+.inputContainer {
+  gap: 50px;
+}
+
+.answerChoicesContainer {
+  margin: 0 0 0 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.questionTypeRow {
+  display: flex;
+  gap: 20px;
 }

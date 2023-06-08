@@ -10,16 +10,22 @@
   gap: 20px;
 }
 
-.metaInfoCardContainers {
-  display: flex;
-  flex-direction: column;
-  border: solid pink 2px;
-}
-
 .inputContainer {
   display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inputRContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 90%;
+  max-width: 980px;
+  border-radius: 5px;
+  background-color: #deddc8;
+  color: black;
   gap: 20px;
-  border: solid white 2px;
 }
 
 .addQuestionBtn {
@@ -27,15 +33,17 @@
   align-items: center;
   justify-content: center;
   border: solid #deddc8 2px;
+  font-size: 40px;
   color:#deddc8;
-  font-weight: bold;
-  width: 25px;
-  height: 25px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 }
 
 .addQuestionBtn:hover {
   cursor: pointer;
+  color: #C57F1E;
+  border-color: #C57F1E;
 }
 
 .newSurveyBtnGroup {
@@ -43,4 +51,23 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+}
+
+.questionRow {
+  display: flex;
+  align-items: center;
+  justify-content: ;
+}
+
+table input {
+  margin: 0;
+}
+
+.descriptionTable {
+  resize: vertical;
+  width: 100%;
+}
+
+.textInput {
+  width: 100%;
 }

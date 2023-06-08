@@ -55,8 +55,10 @@ const QuestionCard = (props: QuestionCardProps) => {
   if(questionType === "Free Response") {
     return (  
       <section className={styles.questionCard}>
-        <label className={styles.inputContainer}>
-          Choose a type of question
+        <div className={styles.questionTypeRow}>
+          <label className={styles.inputContainer}>
+            Choose a type of question:
+          </label>
           <select 
             name="type" 
             value={questionType}
@@ -65,7 +67,7 @@ const QuestionCard = (props: QuestionCardProps) => {
             <option value="Free Response">Free Response</option>
             <option value="Multiple Choice">Multiple Choice</option>
           </select>
-        </label>
+        </div>
         <label className={styles.inputContainer}>
           Write a prompt:
           <input 
@@ -81,8 +83,10 @@ const QuestionCard = (props: QuestionCardProps) => {
   } else {
     return (
       <section className={styles.questionCard}>
-        <label className={styles.inputContainer}>
-          Choose a type of question
+        <div className={styles.questionTypeRow}>
+          <label className={styles.inputContainer}>
+            Choose a type of question:
+          </label>
           <select 
             name="type" 
             value={questionType}
@@ -91,30 +95,34 @@ const QuestionCard = (props: QuestionCardProps) => {
             <option value="Free Response">Free Response</option>
             <option value="Multiple Choice">Multiple Choice</option>
           </select>
-        </label>
-        <label className={styles.inputContainer}>
-          Write a prompt:
+        </div>
+        <div>
+          <label className={styles.inputContainer}>
+            Write a prompt:
+          </label>
           <input 
             type="text" 
             value={prompt}
             name='questions'
             onChange={handleChange}
           />
-        </label>
-        {props.formData.questions[props.index].answerChoices ?
-          props.formData.questions[props.index].answerChoices.map((answerChoice, idx) => (
-            <AnswerChoiceCard
-              key={idx}
-              questionIndex={props.index}
-              index={idx}
-              answerChoice={answerChoice}
-              formData={props.formData}
-              setFormData={props.setFormData} 
-            />
-          ))
-        :
-        ''
-        }
+        </div>
+        <div className={styles.answerChoicesContainer}>
+          {props.formData.questions[props.index].answerChoices ?
+            props.formData.questions[props.index].answerChoices.map((answerChoice, idx) => (
+              <AnswerChoiceCard
+                key={idx}
+                questionIndex={props.index}
+                index={idx}
+                answerChoice={answerChoice}
+                formData={props.formData}
+                setFormData={props.setFormData} 
+              />
+            ))
+          :
+          ''
+          }
+        </div>
         <div 
           className={styles.addAnswerChoiceBtn}
           onClick={handleAddAnswerChoice}>
