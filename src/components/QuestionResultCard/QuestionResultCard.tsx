@@ -35,8 +35,6 @@ const QuestionResultCard = (props: QuestionCardProps) => {
     })
   }
 
-  
-
   question.responses?.forEach(response => {
     allResponses += " " + response.content
   })
@@ -50,7 +48,7 @@ const QuestionResultCard = (props: QuestionCardProps) => {
         setOverallAnalysis(analysis)
     }
     fetchAnalysis()
-  })
+  }, [overallAnalysis, allResponses])
 
   console.log("OVERALL ANALYSIS", overallAnalysis);
   
