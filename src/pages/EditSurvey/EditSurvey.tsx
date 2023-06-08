@@ -52,8 +52,8 @@ const EditSurvey = () => {
 
       if(survey && formData.questions){
         await surveyService.updateSurvey(survey.id, surveyMetaInfo)
-        formData.questions.forEach(question => {
-          saveQuestion(question, survey.id)
+        formData.questions.forEach((question, idx:number) => {
+          saveQuestion(question, survey.id, idx)
         })
       }
 
@@ -64,13 +64,19 @@ const EditSurvey = () => {
     }
   }
 
-  const saveQuestion = async (question: Question, surveyId: number): Promise<void> => {
+  const saveQuestion = async (question: Question, surveyId: number, idx: number): Promise<void> => {
     try {
       if (!import.meta.env.VITE_BACK_END_SERVER_URL) {
         throw new Error('No VITE_BACK_END_SERVER_URL in front-end .env')
       }
       if(question) {
-        const questionExists = survey?.surveyQuestions?.find((existingQuestion: Question) => existingQuestion.prompt === question.prompt)
+        let questionExists;
+        if(survey?.surveyQuestions?.length) {
+          questionExists = idx < survey?.surveyQuestions?.length
+        }
+
+        console.log(`Question with prompt ${question.prompt} exists`, questionExists);
+        
 
         if(questionExists) {
           await surveyService.updateQuestion(surveyId, question.id, question)
