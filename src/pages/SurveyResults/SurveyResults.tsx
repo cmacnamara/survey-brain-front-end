@@ -25,7 +25,7 @@ const SurveyResults = () => {
     }
     fetchSurvey() 
     console.log('I fire once');
-       
+    
   }, [surveyId])  
   
   if(!survey) return <h1>Loading Results...</h1>
@@ -34,18 +34,20 @@ const SurveyResults = () => {
   return (  
     <main className={styles.surveyResultsContainer}>
       <h1>Results for "{survey.title}"</h1>
-      <p>{survey.description}</p>
-      {survey.surveyQuestions ?
-        survey.surveyQuestions.map((question:Question, idx:number) => (
-          <QuestionResultCard 
-            key={idx}
-            index={idx}
-            question={question}
-          />
-        ))
-      :
-      ''
-      }
+      <p className={styles.questionResponseCard}>{survey.description}</p>
+      <div className={styles.resultCardContainer}>
+        {survey.surveyQuestions ?
+          survey.surveyQuestions.map((question:Question, idx:number) => (
+            <QuestionResultCard 
+              key={idx}
+              index={idx}
+              question={question}
+            />
+          ))
+        :
+        ''
+        }
+      </div>
     </main>
   );
 }

@@ -1,3 +1,48 @@
 .questionResultCard {
-  border: solid white 1px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 90%;
+  max-width: 980px;
+  border-radius: 5px;
+  background-color: #deddc8;
+  color: black;
+}
+
+.questionPrompt {
+  margin: 0;
+}
+
+.analysisCard {
+  background-color: #979788;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.analysisTitle {
+  margin: 0;
+}
+
+.questionResultCard p {
+  margin: 10px 0 0 0;
+}
+
+.responseList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.tallyTitle {
+  margin: 20px 0 0 0;
+}
+
+.tallyContainer {
+  margin-left: 10px;
+}
+
+.responsesTitle {
+  margin-bottom: 0;
 }

@@ -54,7 +54,7 @@ const QuestionResultCard = (props: QuestionCardProps) => {
   
   return (
     <section className={styles.questionResultCard}>
-      <h2>{question.prompt}</h2>
+      <h2 className={styles.questionPrompt}>{props.index + 1}. {question.prompt}</h2>
       <ul>
         {question.answerChoices ?
           question.answerChoices.map((answerChoice, idx: number) => (
@@ -66,13 +66,13 @@ const QuestionResultCard = (props: QuestionCardProps) => {
       </ul>
       {question.responses?.length ?
         <>
-          <div>
-            <h3>Analysis</h3>
+          <div className={styles.analysisCard}>
+            <h3 className={styles.analysisTitle}>Analysis</h3>
             <p>Overall, participants felt mostly {overallAnalysis?.type} in their responses</p>
             {question.type === 'Multiple Choice' ?
               <>
-                <h3>Tally of Responses</h3>
-                <div>
+                <h3 className={styles.tallyTitle}>Tally of Responses</h3>
+                <div className={styles.tallyContainer}>
                   {Object.keys(answerTally).map((answer,idx) => (
                     <p key={idx}>{answer}: {answerTally[answer]}</p>
                   ))}
@@ -85,8 +85,8 @@ const QuestionResultCard = (props: QuestionCardProps) => {
           
           {question.type === "Free Response" ?
           <>
-            <h3>Responses</h3>
-            <ul>
+            <h3 className={styles.responsesTitle}>Responses</h3>
+            <ul className={styles.responseList}>
               {question.responses ?
                 question.responses.map((response, idx:number) => (
                   <li key={idx}>
