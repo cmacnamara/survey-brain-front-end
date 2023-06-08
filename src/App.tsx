@@ -43,7 +43,7 @@ function App(): JSX.Element {
       }
     }
     user ? fetchSurveys() : setSurveys([])
-  }, [user])
+  }, [user, surveys])
   
   const handleLogout = (): void => {
     authService.logout()
@@ -94,7 +94,10 @@ function App(): JSX.Element {
           path="/surveys/:surveyId/edit"
           element={
             <ProtectedRoute user={user}>
-              <EditSurvey />
+              <EditSurvey
+                surveys={surveys}
+                setSurveys={setSurveys} 
+              />
             </ProtectedRoute>
           }
         />

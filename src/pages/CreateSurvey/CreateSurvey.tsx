@@ -110,41 +110,43 @@ const CreateSurvey = (props: CreateSurveyProps) => {
       >
         <div className={styles.inputRContainer}>
           <table className={styles.questionTable}>
-            <tr className={styles.paddingBottom}>
-              <td>
-                <label>
-                  Write a name for your survey:
-                </label>
-              </td>
-              <td>
-                <input 
-                  type="text"
-                  className={styles.textInput} 
-                  value={title} 
-                  name="title"
-                  placeholder='Name of your survey' 
-                  onChange={handleChange} 
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label className={styles.inputContainer}>
-                  Write a description of your survey:
-                </label>
-              </td>
-              <td>
-                <textarea 
-                  value={description}
-                  className={styles.descriptionTable} 
-                  name="description" 
-                  onChange={handleChange}
-                  placeholder='Description of your survey'
-                  cols={50}
-                >
-                </textarea>
-              </td>
-            </tr>
+            <tbody>
+              <tr className={styles.paddingBottom}>
+                <td>
+                  <label>
+                    Write a name for your survey:
+                  </label>
+                </td>
+                <td>
+                  <input 
+                    type="text"
+                    className={styles.textInput} 
+                    value={title} 
+                    name="title"
+                    placeholder='Name of your survey' 
+                    onChange={handleChange} 
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label className={styles.inputContainer}>
+                    Write a description of your survey:
+                  </label>
+                </td>
+                <td>
+                  <textarea 
+                    value={description}
+                    className={styles.descriptionTable} 
+                    name="description" 
+                    onChange={handleChange}
+                    placeholder='Description of your survey'
+                    cols={50}
+                  >
+                  </textarea>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
 

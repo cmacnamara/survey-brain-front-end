@@ -25,11 +25,6 @@ const Surveys = (props: SurveysProps) => {
     await surveyService.deleteSurvey(surveyId)
     setSurveys(surveys.filter((survey: Survey) => survey.id !== surveyId))
   }
-  
-  // const handleDeleteQuestion = async (questionId: number): Promise<void> => {
-  //   await surveyService.deleteQuestion(questionId)
-  //   setSurveys(surveys.filter((survey: Survey) => survey.id !== surveyId))
-  // }
 
   return (
     <main className={styles.surveysContainer}>

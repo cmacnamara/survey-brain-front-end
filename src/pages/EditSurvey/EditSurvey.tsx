@@ -16,7 +16,12 @@ import { Survey, Question } from '../../types/models'
 import { NewSurveyFormData } from '../../types/forms'
 import { handleErrMsg } from '../../types/validators'
 
-const EditSurvey = () => {
+interface EditSurveyProps {
+  surveys: Survey[],
+  setSurveys: (value: Survey[] | ((prevVar: Survey[]) => Survey[])) => void
+}
+
+const EditSurvey = (props: EditSurveyProps) => {
   const navigate = useNavigate()
   const {surveyId} = useParams()
   const {state} = useLocation()
@@ -51,11 +56,12 @@ const EditSurvey = () => {
       }
 
       if(survey && formData.questions){
-        await surveyService.updateSurvey(survey.id, surveyMetaInfo)
+        const updatedSurvey = await surveyService.updateSurvey(survey.id, surveyMetaInfo)
         formData.questions.forEach((question, idx:number) => {
           saveQuestion(question, survey.id, idx)
         })
       }
+      props.setSurveys([...props.surveys])
 
       navigate('/surveys')
     } catch (err) {
@@ -119,41 +125,43 @@ const EditSurvey = () => {
       >
         <div className={styles.inputRContainer}>
           <table className={styles.questionTable}>
-            <tr>
-              <td>
-                <label className={styles.inputContainer}>
-                  Edit survey name:
-                </label>
-              </td>
-              <td>      
-                <input 
-                  type="text" 
-                  value={title} 
-                  name="title"
-                  className={styles.textInput} 
-                  placeholder='Name of your survey' 
-                  onChange={handleChange} 
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label className={styles.inputContainer}>
-                  Edit description of your survey:
-                </label>
-              </td>
-              <td>
-                <textarea 
-                  value={description} 
-                  name="description"
-                  className={styles.descriptionTable}  
-                  onChange={handleChange}
-                  placeholder='Edit description of your survey'
-                  cols={50}
-                >
-                </textarea>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <label className={styles.inputContainer}>
+                    Edit survey name:
+                  </label>
+                </td>
+                <td>      
+                  <input 
+                    type="text" 
+                    value={title} 
+                    name="title"
+                    className={styles.textInput} 
+                    placeholder='Name of your survey' 
+                    onChange={handleChange} 
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label className={styles.inputContainer}>
+                    Edit description of your survey:
+                  </label>
+                </td>
+                <td>
+                  <textarea 
+                    value={description} 
+                    name="description"
+                    className={styles.descriptionTable}  
+                    onChange={handleChange}
+                    placeholder='Edit description of your survey'
+                    cols={50}
+                  >
+                  </textarea>
+                </td>
+              </tr>
+            </tbody>
           </table>
         </div>
 

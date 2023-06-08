@@ -25,10 +25,10 @@ SurveyBrain is an app that provides users with the tools to create, edit, and sh
 - Vite
 - JWT
 - JavaScript / HTML / CSS
-- [TwinWord API](https://rapidapi.com/twinword/api/twinword-text-analysis-bundle)
+- [Twinword API](https://rapidapi.com/twinword/api/twinword-text-analysis-bundle)
 <br />
 
-## Ice Box
+## Next Steps
 - [ ] Provide users with topic tagging analysis.
 - [ ] Allow users to delete questions and answer choices from surveys.
 - [ ] Allow users to mark questions as required.
