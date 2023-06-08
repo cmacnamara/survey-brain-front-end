@@ -1,0 +1,34 @@
+.questionResponseCard {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 90%;
+  max-width: 980px;
+  border-radius: 5px;
+  background-color: #deddc8;
+  color: black;
+  gap: 20px;
+}
+
+.questionTitle {
+  margin: 0;
+}
+
+.frTextBox {
+  resize: vertical;
+}
+
+.mcOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mcOption {
+  display: flex;
+}
+
+.radioInput {
+  width: 20px;
+  margin: 0 10px 0 10px;
+}

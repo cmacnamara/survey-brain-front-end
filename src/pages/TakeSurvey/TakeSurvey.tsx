@@ -64,12 +64,12 @@ const TakeSurvey = () => {
   return (  
     <main className={styles.takeSurveyContainer}>
       <h1>{survey.title}</h1>
-      <p>{survey.description}</p>
+      <p className={styles.questionResponseCard}><strong>{survey.description}</strong></p>
       <p>{message}</p>
       <form 
         autoComplete='off' 
         onSubmit={handleSubmit} 
-        className={styles.newSurveyForm}
+        className={styles.takeSurveyForm}
       >
         {survey.surveyQuestions ?
           survey.surveyQuestions.map((question, idx) => (
@@ -84,7 +84,13 @@ const TakeSurvey = () => {
           :
           <h1>No questions</h1> 
         }
-        <button type='submit' onSubmit={handleSubmit}>Submit</button>
+        <button 
+          type='submit'
+          className={styles.submitSurveyBtn} 
+          onSubmit={handleSubmit}
+        >
+          Submit
+        </button>
       </form>
     </main>
   );

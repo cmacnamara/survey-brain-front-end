@@ -37,10 +37,12 @@ const QuestionResponseCard = (props: QuestionResponseCardProps) => {
 
   if(props.question.type === "Free Response") {
     return (  
-      <div className={styles.freeResponse}>
-        <h2>{props.index + 1}. {props.question.prompt}</h2>
+      <div className={styles.questionResponseCard}>
+        <h2 className={styles.questionTitle}>{props.index + 1}. {props.question.prompt}</h2>
         <textarea 
           name="response"
+          className={styles.frTextBox}
+          placeholder='Write response here'
           value={response} 
           cols={30} 
           rows={10}
@@ -53,17 +55,18 @@ const QuestionResponseCard = (props: QuestionResponseCardProps) => {
   }
 
   return (  
-    <div>
-      <h2>{props.index + 1}. {props.question.prompt}</h2>
+    <div className={styles.questionResponseCard}>
+      <h2 className={styles.questionTitle}>{props.index + 1}. {props.question.prompt}</h2>
       {props.question.answerChoices ?
-      <div>
+      <div className={styles.mcOptions}>
         {props.question.answerChoices.map((answerChoice,idx) => (
-          <div key={idx}>
+          <div key={idx} className={styles.mcOption}>
             <input
               type="radio"
               name={`question${props.question.id}`}
               value={answerChoice}
               id={`choice${idx}`}
+              className={styles.radioInput}
               checked={response === answerChoice}
               onChange={handleChange} 
             />
