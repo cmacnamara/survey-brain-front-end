@@ -44,6 +44,7 @@ const QuestionResultCard = (props: QuestionCardProps) => {
         if(overallAnalysis?.author) return
         const analysis = await analysisService.getSentimentAnalysis(allResponses)
         console.log(`CALLING API FOR ${question.prompt}`);
+        console.log("Analysis is", analysis);
         
         setOverallAnalysis(analysis)
     }
