@@ -1,4 +1,4 @@
-# NewsLingo
+# SurveyBrain
 
 <img src= "./public/logo.png" >
 
@@ -29,11 +29,11 @@ SurveyBrain is an app that provides users with the tools to create, edit, and sh
 <br />
 
 ## Ice Box
-[] Provide users with topic tagging analysis.
-[] Allow users to delete questions and answer choices from surveys.
-[] Allow users to mark questions as required.
-[] Display text indicating that a question has been edited.
-[] Allow users to delete their account.
-[] Allow users to make surveys public or private.
-[] Add charts/graphs to analysis page.
-[] Allow users to restrict participants from submitting a survey more than once.
+- [ ] Provide users with topic tagging analysis.
+- [ ] Allow users to delete questions and answer choices from surveys.
+- [ ] Allow users to mark questions as required.
+- [ ] Display text indicating that a question has been edited.
+- [ ] Allow users to delete their account.
+- [ ] Allow users to make surveys public or private.
+- [ ] Add charts/graphs to analysis page.
+- [ ] Allow users to restrict participants from submitting a survey more than once.
