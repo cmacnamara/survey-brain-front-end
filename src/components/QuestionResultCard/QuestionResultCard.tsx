@@ -48,7 +48,7 @@ const QuestionResultCard = (props: QuestionCardProps) => {
         setOverallAnalysis(analysis)
     }
     fetchAnalysis()
-  }, [overallAnalysis, allResponses])
+  }, [question])
 
   //console.log("OVERALL ANALYSIS", overallAnalysis);
   

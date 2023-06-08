@@ -42,8 +42,6 @@ function App(): JSX.Element {
         console.log(error);
       }
     }
-    console.log("Surveys fetched");
-    
     user ? fetchSurveys() : setSurveys([])
   }, [user])
   

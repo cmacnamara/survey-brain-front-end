@@ -61,8 +61,8 @@ const EditSurvey = (props: EditSurveyProps) => {
         formData.questions.forEach((question, idx:number) => {
           saveQuestion(question, survey.id, idx)
         })
-        const idxOfCurrArray = props.surveys.findIndex(surveyObj => surveyObj.id === survey.id)
-        tempSurveys.splice(idxOfCurrArray, 1, updatedSurvey)
+        const idxOfCurrSurvey = props.surveys.findIndex(surveyObj => surveyObj.id === survey.id)
+        tempSurveys.splice(idxOfCurrSurvey, 1, updatedSurvey)
         props.setSurveys([...tempSurveys])
       }
 
