@@ -23,7 +23,6 @@ const AnswerChoiceCard = (props: AnswerChoiceCardProps) => {
     const updatedAnswerChoice = evt.target.value
     setAnswerChoiceText(updatedAnswerChoice)
     
-    //After updating state, use setFormData
     const tempFormData = props.formData
     tempFormData.questions[props.questionIndex].answerChoices[props.index] = updatedAnswerChoice 
     props.setFormData({...tempFormData})

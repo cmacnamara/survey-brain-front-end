@@ -36,7 +36,6 @@ const QuestionCard = (props: QuestionCardProps) => {
     const updatedPrompt = evt.target.value
     setPrompt(updatedPrompt)
     
-    //After updating state, use setFormData
     const tempFormData = props.formData
     tempFormData.questions[props.index].prompt = updatedPrompt 
     props.setFormData({...tempFormData})
@@ -46,7 +45,6 @@ const QuestionCard = (props: QuestionCardProps) => {
     const updatedType = evt.target.value
     setQuestionType(evt.target.value)
   
-    //After updating state, use setFormData
     const tempFormData = props.formData
     tempFormData.questions[props.index].type = updatedType 
     props.setFormData({...tempFormData})
@@ -77,7 +75,6 @@ const QuestionCard = (props: QuestionCardProps) => {
             onChange={handleChange}
           />
         </label>
-        {/* <button onClick={handleDeleteQuestion}>X</button> */}
       </section>
     );
   } else {

@@ -23,13 +23,10 @@ const SurveyResults = () => {
       const data = await surveyService.show(surveyId)
       setSurvey(data)
     }
-    fetchSurvey() 
-    console.log('I fire once');
-    
+    fetchSurvey()
   }, [surveyId])  
   
   if(!survey) return <h1>Loading Results...</h1>
-  console.log("Survey object", survey);
   
   return (  
     <main className={styles.surveyResultsContainer}>

@@ -43,15 +43,11 @@ const QuestionResultCard = (props: QuestionCardProps) => {
     const fetchAnalysis = async (): Promise<void> => {
         if(overallAnalysis?.author) return
         const analysis = await analysisService.getSentimentAnalysis(allResponses)
-        console.log(`CALLING API FOR ${question.prompt}`);
-        console.log("Analysis is", analysis);
         
         setOverallAnalysis(analysis)
     }
     fetchAnalysis()
   }, [question])
-
-  //console.log("OVERALL ANALYSIS", overallAnalysis);
   
   return (
     <section className={styles.questionResultCard}>
@@ -69,7 +65,7 @@ const QuestionResultCard = (props: QuestionCardProps) => {
         <>
           <div className={styles.analysisCard}>
             <h3 className={styles.analysisTitle}>Analysis</h3>
-            <p>Overall, participants felt mostly {overallAnalysis?.type} in their responses</p>
+            <p>Overall, participants felt mostly <span className={overallAnalysis?.type === 'positive' ? styles.positive : overallAnalysis?.type === 'negative' ? styles.negative : styles.neutral}>{overallAnalysis?.type}</span> in their responses</p>
             {question.type === 'Multiple Choice' ?
               <>
                 <h3 className={styles.tallyTitle}>Tally of Responses</h3>
