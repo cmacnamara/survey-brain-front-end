@@ -61,6 +61,7 @@ table input {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  margin-bottom: 20px;
 }
 
 .editSurveyBtns {
