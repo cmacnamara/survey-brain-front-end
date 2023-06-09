@@ -19,6 +19,7 @@ SurveyBrain is an app that provides users with the tools to create, edit, and sh
 ## Technologies
 - TypeScript
 - PostgreSQL / Supabase
+- Sequelize
 - Express
 - React
 - Node
