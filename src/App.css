@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 *,
 *::before,
 *::after {
@@ -10,7 +12,7 @@ body {
   margin: 0;
   min-height: 100vh;
 
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   color: #deddc8;
   background-color: #141301;
@@ -63,6 +65,10 @@ nav li {
 
 nav a {
   text-decoration: underline;
+}
+
+nav a:hover{
+  color: #939280;
 }
 
 nav button {

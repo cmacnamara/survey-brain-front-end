@@ -16,6 +16,9 @@
 
 .frTextBox {
   resize: vertical;
+  padding: 8px;
+  font-family: 'Roboto';
+  font-size: 16px;
 }
 
 .mcOptions {

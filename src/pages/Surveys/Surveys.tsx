@@ -39,7 +39,7 @@ const Surveys = (props: SurveysProps) => {
       <div>
         <h1 className={styles.sectionTitle}>My surveys</h1>
         {!surveys.length ?
-          <h3>No surveys created yet</h3>
+          <h3 className={styles.sectionTitle}>No surveys created yet</h3>
           :
           <div className={styles.surveyCardContainer}>
             {surveys.map((survey: Survey) => (

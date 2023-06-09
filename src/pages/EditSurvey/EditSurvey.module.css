@@ -47,6 +47,9 @@ table input {
 .descriptionTable {
   resize: vertical;
   width: 100%;
+  padding: 8px;
+  font-family: 'Roboto';
+  font-size: 16px;
 }
 
 .textInput {
